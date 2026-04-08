@@ -210,38 +210,39 @@ void pengembalian_buku()
     cout << "===== PENGEMBALIAN BUKU =====" << endl;
     input_peminjaman_pengembalian();
 
-    // cari id_buku yang ingin dikembalikan tersimpan di index mana
+    // cari id_buku yang ingin diba tersimpan di index mana
     bool found = false;
     int s = 0;
     string temp_id_buku = peminjaman[0].id_buku;
-    string temp_id_peminjam = peminjaman[0].id_peminjam;
-    string temp_benar_id_buku;
-    string temp_benar_id_peminjam;
-    while (s < n && !found)
+    string temp_benar;
+    while (s < n && found == false)
     {
-        temp_benar_id_buku = peminjaman[s].id_buku;
-        temp_benar_id_peminjam = peminjaman[s].id_peminjam;
-        if (temp_benar_id_buku == temp_id_buku && temp_benar_id_peminjam == temp_benar_id_peminjam)
+        temp_benar = buku[s].id_buku;
+        if (temp_benar == temp_id_buku)
         {
             found = true;
         }
         else
         {
-            s++; // s = index yg isinya adalah id_buku yg akan dikembalikan
+            s++; // s = index yg isinya adalah id_buku yg akan dimpinjam
         }
     }
-    // end cari id_buku yang ingin dikembalikan tersimpan di index mana
+    // end cari id_buku yang ingin dipinjam tersimpan di index mana
 
     if (!found)
     {
         cout << endl
-             << "Tidak ada data peminjaman tersebut" << endl;
+             << "Buku yang anda cari tidak tersedia" << endl;
         fclose(fp_data_peminjaman);
         return;
     }
+    else if (buku[s].tersedia == 0)
+    {
+        cout << "Maaf, stok buku yang anda cari lagi dipinjam smua" << endl; // bikinin kat kata yg indah
+        fclose(fp_data_peminjaman);
+    }
     else
     {
-        //////// GESER DULU DATA PEMINJAMAN YG MAU DI HAPUUUSSS// NGANTUK MW TDR DULU
         // menulis data peminjam ke file data_peminjaman.txt
         fprintf(fp_data_peminjaman,
                 "%s| %s| %s|\n",

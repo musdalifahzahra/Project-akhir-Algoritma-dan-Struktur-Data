@@ -240,8 +240,8 @@ void pengembalian_buku()
         return;
     }
     else
-    {
-        //////// GESER DULU DATA PEMINJAMAN YG MAU DI HAPUUUSSS// NGANTUK MW TDR DULU
+    { 
+        //////// GESER DULU DATA PEMINJAMAN YG MAU DI HAPUUUSSS// NGANTUK MW BOBO
         // menulis data peminjam ke file data_peminjaman.txt
         fprintf(fp_data_peminjaman,
                 "%s| %s| %s|\n",

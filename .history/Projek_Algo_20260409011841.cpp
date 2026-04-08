@@ -235,13 +235,17 @@ void pengembalian_buku()
     if (!found)
     {
         cout << endl
-             << "Tidak ada data peminjaman tersebut" << endl;
+             << "Tidak ada data peminjaman t" << endl;
         fclose(fp_data_peminjaman);
         return;
     }
+    else if (buku[s].tersedia == 0)
+    {
+        cout << "Maaf, stok buku yang anda cari lagi dipinjam smua" << endl; // bikinin kat kata yg indah
+        fclose(fp_data_peminjaman);
+    }
     else
     {
-        //////// GESER DULU DATA PEMINJAMAN YG MAU DI HAPUUUSSS// NGANTUK MW TDR DULU
         // menulis data peminjam ke file data_peminjaman.txt
         fprintf(fp_data_peminjaman,
                 "%s| %s| %s|\n",
