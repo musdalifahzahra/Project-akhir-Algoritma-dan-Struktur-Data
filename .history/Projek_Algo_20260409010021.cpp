@@ -114,7 +114,7 @@ void peminjaman_buku()
     // membaca data buku dari data_buku.txt
     membaca_data_buku_txt();
 
-    // input data peminjaman 
+    // input data peminjaman ke file data_peminjaman.txt
     FILE *fp_data_peminjaman = fopen("data_peminjaman.txt", "a");
     if (!fp_data_peminjaman)
     {
@@ -194,3 +194,8 @@ void peminjaman_buku()
     }
 }
 
+void pengembalian_buku()
+{
+    // membaca data buku dari data_buku.txt
+    membaca_data_buku_txt();
+}

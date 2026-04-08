@@ -92,7 +92,7 @@ void membaca_data_buku_txt()
     FILE *fp_data_buku = fopen("data_buku.txt", "r");
     if (!fp_data_buku)
     {
-        cout << "Belum ada data buku";
+        cout << "Belum ada buku ";
         return;
     }
 
@@ -114,7 +114,7 @@ void peminjaman_buku()
     // membaca data buku dari data_buku.txt
     membaca_data_buku_txt();
 
-    // input data peminjaman 
+    // input data peminjaman
     FILE *fp_data_peminjaman = fopen("data_peminjaman.txt", "a");
     if (!fp_data_peminjaman)
     {
@@ -194,3 +194,8 @@ void peminjaman_buku()
     }
 }
 
+void pengembalian_buku()
+{
+    // membaca data buku dari data_buku.txt
+    membaca_data_buku_txt();
+}

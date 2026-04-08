@@ -92,7 +92,7 @@ void membaca_data_buku_txt()
     FILE *fp_data_buku = fopen("data_buku.txt", "r");
     if (!fp_data_buku)
     {
-        cout << "Belum ada data buku";
+        cout << "Belum ada buku yang dapat dipinjam!";
         return;
     }
 
@@ -114,7 +114,7 @@ void peminjaman_buku()
     // membaca data buku dari data_buku.txt
     membaca_data_buku_txt();
 
-    // input data peminjaman 
+    // input data peminjaman
     FILE *fp_data_peminjaman = fopen("data_peminjaman.txt", "a");
     if (!fp_data_peminjaman)
     {
@@ -148,13 +148,11 @@ void peminjaman_buku()
     {
         cout << endl
              << "Buku yang anda cari tidak tersedia" << endl;
-        fclose(fp_data_peminjaman);
         return;
     }
     else if (buku[s].tersedia == 0)
     {
         cout << "Maaf, stok buku yang anda cari lagi dipinjam smua" << endl; // bikinin kat kata yg indah
-        fclose(fp_data_peminjaman);
     }
     else
     {
@@ -167,8 +165,8 @@ void peminjaman_buku()
 
         cout << "Data peminjaman berhasil disimpan!" << endl;
         fclose(fp_data_peminjaman);
-        // end menulis data peminjam ke file data_peminjaman.txt
-
+        // end input data peminjaman
+        
         buku[s].tersedia--;
         buku[s].terpinjam++;
         buku[s].total_peminjaman++;
@@ -194,3 +192,8 @@ void peminjaman_buku()
     }
 }
 
+void pengembalian_buku()
+{
+    // membaca data buku dari data_buku.txt
+    membaca_data_buku_txt();
+}

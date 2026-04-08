@@ -194,3 +194,11 @@ void peminjaman_buku()
     }
 }
 
+void pengembalian_buku()
+{
+    // membaca data buku dari data_buku.txt
+    membaca_data_buku_txt();
+
+    //input data pengembalian
+    
+}
