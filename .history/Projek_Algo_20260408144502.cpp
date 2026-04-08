@@ -3,11 +3,7 @@
 using namespace std;
 
 struct mus{
-    ////musdal
-    ////
-    ////
-    ////
-    ///
+    
 };
 
 struct dataBuku{
