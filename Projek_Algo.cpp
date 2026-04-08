@@ -1,16 +1,6 @@
 #include <iostream>
 #include <iomanip>
 using namespace std;
-
-struct mus
-{
-    ////musdal
-    ////
-    ////
-    ////
-    /// hhhhhbsaahhhhhh
-};
-
 struct dataBuku
 {
     char id_buku[10];
@@ -39,10 +29,46 @@ void pengembalian_buku();
 int main()
 {
     int pilihan;
-    cout << "=========================\n";
+    cout << "==========================\n";//mau pake setfill
     cout << "    Lentera Digital\n";
     cout << "==========================\n";
+    cout<< "1. Menambah data buku\n";
+    cout<<"2. Melihat daftar buku\n";
+    cout<<"3. Peminjaman buku\n";
+    cout<<"4. Pengembalian buku\n";
+    cout<<"5. Keluar\n";
+    cout<<"============================\n";
+    cout<<"Pilih menu (1-5): ";
+    switch (pilihan){
+        case 1:{
+            menambahkan_data_buku();
+            break;
+        }
+        case 2:{
+            melihat_daftar_buku();
+            break;
+        }
+       case 3:{
+           peminjaman_buku();
+           break;
+       }
+       case 4:{
+           pengembalian_buku();
+           break;
+       }
+       case 5:{
+    cout<<"Terima Kasih Telah menggunakan program ini!:>\n";
+       }
+    }
 }
+
+void menambahkan_data_buku(){
+    
+}
+
+
+
+
 
 void peminjaman_buku()
 {
