@@ -2,7 +2,7 @@
 #include <iomanip>
 using namespace std;
 
-
+struct mus{};
 struct dataBuku{
     char id_buku[10];
     char judul_buku[100];
