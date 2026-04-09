@@ -242,12 +242,7 @@ void pengembalian_buku()
     else
     {
         //////// GESER DULU DATA PEMINJAMAN YG MAU DI HAPUUUSSS// NGANTUK MW TDR DULU
-        // Geser index setelah index yang mau dihapus datanya
-        for (int i = s; i < n - 1; i++)
-        {
-            peminjaman[i] = peminjaman[i + 1];
-        }
-        n--; // karena menghapus 1 data, maka jumlah data yang tersimpan akan berkurag
+        
         // menulis data peminjam ke file data_peminjaman.txt
         fprintf(fp_data_peminjaman,
                 "%s| %s| %s|\n",
