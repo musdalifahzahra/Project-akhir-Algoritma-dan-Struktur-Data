@@ -1,9 +1,6 @@
 #include <iostream>
 #include <iomanip>
 using namespace std;
-///perubahanpunyaku musdal duluuu
-/////////// comeeennn
-
 struct dataBuku
 {
     char id_buku[10];
@@ -24,7 +21,6 @@ struct peminjamanBuku
 
 peminjamanBuku peminjaman[100];
 
-void simpan_data();
 void menambahkan_data_buku();
 void melihat_daftar_buku();
 void peminjaman_buku();
@@ -32,7 +28,8 @@ void pengembalian_buku();
 
 int main()
 {
-    cout << "==========================\n";//mau pake setfill
+    int pilihan;
+    cout << "==========================\n"; // mau pake setfill
     cout << "    Lentera Digital\n";
     cout << "==========================\n";
     cout << "1. Menambah data buku\n";
@@ -71,66 +68,8 @@ int main()
     }
 }
 
-FILE *fptr = fopen("data_buku.txt", "a");
-dataBuku *ptr = buku;
-int pilihan, jumlahData=0;
-
-////////simpan data
-void simpan_data(dataBuku *ptr, int &jumlah){
-if (fptr==NULL){
-    cout<<"Gagal membuka file!\n"; return;
-}else{
-    fprintf(fptr, "%s, %s, %d, %d, %d, %d\n", 
-        (ptr+jumlah-1)->id_buku, (ptr+jumlah-1)->judul_buku, 
-        (ptr+jumlah-1)->stok_buku, (ptr+jumlah-1)->tersedia, 
-        (ptr+jumlah-1)->terpinjam, (ptr+jumlah-1)->total_peminjaman);
-        fclose(fptr);
-}
-}
-
-
-//////tambah data buku leeeeeeee
-void menambahkan_data_buku(dataBuku *ptr,int &jumlah){
-    cout<<"=== TAMBAH DATA LUKISAN ===\n";
-    cout<<left << setw(15)<<"ID Buku "<<": "; cin.getline((ptr+jumlah)->id_buku, 10);
-    cout<<left<<setw(15)<<"Judul Buku"<<": "; cin.getline((ptr+jumlah)-> judul_buku, 100);
-    cout<<left<<setw(15)<<"Stok Buku"<<": "; cin>>((ptr+jumlah)->stok_buku);
-    cout<<left<<setw(15)<<"Total yang tersedia"<<": "; cin>>((ptr+jumlah)->tersedia);
-    cout<<left<<setw(15)<<"Total yang terpinjam"<<": "; cin>>((ptr+jumlah)->terpinjam);
-    jumlah++;
-    simpan_data(ptr, jumlah);
-    cout<<"Data berhasil ditambahkan!\n";
-    system("pause");
-    system("cls");
-
-}
-
-void melihat_daftar_buku(dataBuku *ptr, int &jumlah){
-    fptr = fopen("data_buku.txt", "r");
-    if(fptr==NULL){
-        cout<<"Gagal membuka file!\n"; 
-        system("pause");
-        system("cls");
-        return;
-    } jumlahData=0;
-    while(fscanf(fptr, "%s, %s, %d, %d, %d, %d\n", 
-    buku[jumlahData].id_buku, buku[jumlahData].judul_buku, 
-buku[jumlahData].stok_buku, buku[jumlahData].total_peminjaman, buku[jumlahData].tersedia, 
-buku[jumlahData].terpinjam)!= EOF){
-    jumlahData++;
-}fclose(fptr);
-int metode;
-cout<<"=== TAMPILKAN DATA ===\n";
-
-
-
-
-
-}
-
-
-
-void peminjaman_buku(){
+void menambahkan_data_buku()
+{
 }
 
 void input_peminjaman_pengembalian()
@@ -265,7 +204,7 @@ void pengembalian_buku()
     if (!fp_data_peminjaman)
     {
         cout << "Belum ada data peminjaman buku";
-        return;
+        return; bvc
     }
 
     cout << "===== PENGEMBALIAN BUKU =====" << endl;
@@ -303,12 +242,6 @@ void pengembalian_buku()
     else
     {
         //////// GESER DULU DATA PEMINJAMAN YG MAU DI HAPUUUSSS// NGANTUK MW TDR DULU
-        // Geser index setelah index yang mau dihapus datanya
-        for (int i = s; i < n - 1; i++)
-        {
-            peminjaman[i] = peminjaman[i + 1];
-        }
-        n--; // karena menghapus 1 data, maka jumlah data yang tersimpan akan berkurag
         // menulis data peminjam ke file data_peminjaman.txt
         fprintf(fp_data_peminjaman,
                 "%s| %s| %s|\n",

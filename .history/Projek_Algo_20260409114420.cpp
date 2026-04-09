@@ -1,7 +1,6 @@
 #include <iostream>
 #include <iomanip>
 using namespace std;
-///perubahanpunyaku musdal duluuu
 /////////// comeeennn
 
 struct dataBuku
@@ -32,7 +31,12 @@ void pengembalian_buku();
 
 int main()
 {
+<<<<<<< HEAD
     cout << "==========================\n";//mau pake setfill
+=======
+    int pilihan;
+    cout << "==========================\n"; // mau pake setfill
+>>>>>>> 897bf5abcb22c59bb254effc3ce3bf1e251d210b
     cout << "    Lentera Digital\n";
     cout << "==========================\n";
     cout << "1. Menambah data buku\n";
@@ -119,12 +123,6 @@ buku[jumlahData].stok_buku, buku[jumlahData].total_peminjaman, buku[jumlahData].
 buku[jumlahData].terpinjam)!= EOF){
     jumlahData++;
 }fclose(fptr);
-int metode;
-cout<<"=== TAMPILKAN DATA ===\n";
-
-
-
-
 
 }
 
