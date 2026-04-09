@@ -196,10 +196,10 @@ void membaca_data_peminjaman_txt()
 
 void peminjaman_buku()
 {
-    // membaca file data_buku.txt
+    // 1. membaca file data_buku.txt dan simpan data ke buku[]
     membaca_data_buku_txt();
 
-    // input data peminjaman
+    // 2. input data peminjaman
     FILE *fp_data_peminjaman = fopen("data_peminjaman.txt", "a");
     if (!fp_data_peminjaman)
     {
@@ -219,7 +219,7 @@ void peminjaman_buku()
     cin >> peminjaman[0].id_buku;
     cout << endl;
 
-    // cari id_buku yang ingin dipinjam tersimpan di index mana
+    // 3. mencari index buku[] mana yang menyimpan data buku yang ingin dipinjam
     bool found = false;
     int s = 0;
     string temp_id_buku = peminjaman[0].id_buku;
@@ -236,7 +236,6 @@ void peminjaman_buku()
             s++; // s = index yg isinya adalah id_buku yg akan dimpinjam
         }
     }
-    // end cari id_buku yang ingin dipinjam tersimpan di index mana
 
     if (!found)
     {
@@ -250,9 +249,11 @@ void peminjaman_buku()
         cout << "Maaf, stok buku yang anda cari lagi dipinjam smua" << endl; // bikinin kat kata yg indah
         fclose(fp_data_peminjaman);
     }
+
+    // 4. apabila di buku[] terdapat data yang ingin dipinjam dan stok buku tersedia
+    // 4.1 data peminjaman di tulis ke dalam data_peminjaman.txt
     else
     {
-        // menulis data peminjam ke file data_peminjaman.txt
         fprintf(fp_data_peminjaman,
                 "%s| %s| %s|\n",
                 peminjaman[0].id_peminjam,
@@ -261,13 +262,12 @@ void peminjaman_buku()
 
         cout << "Data peminjaman berhasil disimpan!" << endl;
         fclose(fp_data_peminjaman);
-        // end menulis data peminjam ke file data_peminjaman.txt
 
+        // 4.2 melakukan update mengenai informasi stok buku di data_buku.txt
         buku[s].tersedia--;
         buku[s].terpinjam++;
         buku[s].total_peminjaman++;
 
-        // memperbarui data stok buku di data_buku.txt
         FILE *fp_data_buku = fopen("data_buku.txt", "w");
         if (!fp_data_buku)
         {
@@ -284,7 +284,6 @@ void peminjaman_buku()
                     buku[i].terpinjam, buku[i].total_peminjaman);
         }
         fclose(fp_data_buku);
-        // end memperbarui data stok buku di data_buku.txt
     }
 }
 // end void peminjaman buku
@@ -376,7 +375,7 @@ void pengembalian_buku()
 
         // 4. hapus data peminjaman tsbt dari data_peminjaman.txt
         //    geser index nya
-        for (int i = m; i < m; i++)
+        for (int i = s2; i < m; i++)
         {
             peminjaman[i] = peminjaman[i + 1];
         }
@@ -394,8 +393,8 @@ void pengembalian_buku()
             fprintf(fp_data_peminjaman,
                     "%s| %s| %s|\n",
                     peminjaman[i].id_peminjam,
-                    peminjaman[1].nama_peminjam,
-                    peminjaman[1].id_buku);
+                    peminjaman[i].nama_peminjam,
+                    peminjaman[i].id_buku);
         }
         cout << "Data peminjaman berhasil diupdate!" << endl;
         fclose(fp_data_peminjaman);
