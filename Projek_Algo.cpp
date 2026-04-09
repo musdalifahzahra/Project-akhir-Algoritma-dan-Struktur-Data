@@ -2,7 +2,6 @@
 #include <iomanip>
 using namespace std;
 /////////// comeeennn
-////////////////aaaaaaaaaaaaaaaaaaaaauuuuuuuuuuuuuuuuudddddddddddd
 
 struct dataBuku
 {
@@ -119,7 +118,8 @@ buku[jumlahData].stok_buku, buku[jumlahData].total_peminjaman, buku[jumlahData].
 buku[jumlahData].terpinjam)!= EOF){
     jumlahData++;
 }fclose(fptr);
-
+int metode;
+cout<<"=== TAMPILKAN DATA ===\n";
 
 
 
