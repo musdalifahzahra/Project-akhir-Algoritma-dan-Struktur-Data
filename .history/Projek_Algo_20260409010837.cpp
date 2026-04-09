@@ -1,8 +1,6 @@
 #include <iostream>
 #include <iomanip>
 using namespace std;
-/////////// comeeennn
-
 struct dataBuku
 {
     char id_buku[10];
@@ -23,7 +21,6 @@ struct peminjamanBuku
 
 peminjamanBuku peminjaman[100];
 
-void simpan_data();
 void menambahkan_data_buku();
 void melihat_daftar_buku();
 void peminjaman_buku();
@@ -31,12 +28,8 @@ void pengembalian_buku();
 
 int main()
 {
-<<<<<<< HEAD
-    cout << "==========================\n";//mau pake setfill
-=======
     int pilihan;
     cout << "==========================\n"; // mau pake setfill
->>>>>>> 897bf5abcb22c59bb254effc3ce3bf1e251d210b
     cout << "    Lentera Digital\n";
     cout << "==========================\n";
     cout << "1. Menambah data buku\n";
@@ -75,60 +68,7 @@ int main()
     }
 }
 
-FILE *fptr = fopen("data_buku.txt", "a");
-dataBuku *ptr = buku;
-int pilihan, jumlahData=0;
-
-////////simpan data
-void simpan_data(dataBuku *ptr, int &jumlah){
-if (fptr==NULL){
-    cout<<"Gagal membuka file!\n"; return;
-}else{
-    fprintf(fptr, "%s, %s, %d, %d, %d, %d\n", 
-        (ptr+jumlah-1)->id_buku, (ptr+jumlah-1)->judul_buku, 
-        (ptr+jumlah-1)->stok_buku, (ptr+jumlah-1)->tersedia, 
-        (ptr+jumlah-1)->terpinjam, (ptr+jumlah-1)->total_peminjaman);
-        fclose(fptr);
-}
-}
-
-
-//////tambah data buku leeeeeeee
-void menambahkan_data_buku(dataBuku *ptr,int &jumlah){
-    cout<<"=== TAMBAH DATA LUKISAN ===\n";
-    cout<<left << setw(15)<<"ID Buku "<<": "; cin.getline((ptr+jumlah)->id_buku, 10);
-    cout<<left<<setw(15)<<"Judul Buku"<<": "; cin.getline((ptr+jumlah)-> judul_buku, 100);
-    cout<<left<<setw(15)<<"Stok Buku"<<": "; cin>>((ptr+jumlah)->stok_buku);
-    cout<<left<<setw(15)<<"Total yang tersedia"<<": "; cin>>((ptr+jumlah)->tersedia);
-    cout<<left<<setw(15)<<"Total yang terpinjam"<<": "; cin>>((ptr+jumlah)->terpinjam);
-    jumlah++;
-    simpan_data(ptr, jumlah);
-    cout<<"Data berhasil ditambahkan!\n";
-    system("pause");
-    system("cls");
-
-}
-
-void melihat_daftar_buku(dataBuku *ptr, int &jumlah){
-    fptr = fopen("data_buku.txt", "r");
-    if(fptr==NULL){
-        cout<<"Gagal membuka file!\n"; 
-        system("pause");
-        system("cls");
-        return;
-    } jumlahData=0;
-    while(fscanf(fptr, "%s, %s, %d, %d, %d, %d\n", 
-    buku[jumlahData].id_buku, buku[jumlahData].judul_buku, 
-buku[jumlahData].stok_buku, buku[jumlahData].total_peminjaman, buku[jumlahData].tersedia, 
-buku[jumlahData].terpinjam)!= EOF){
-    jumlahData++;
-}fclose(fptr);
-
-}
-
-
-
-void peminjaman_buku()
+void menambahkan_data_buku()
 {
 }
 
@@ -274,34 +214,35 @@ void pengembalian_buku()
     bool found = false;
     int s = 0;
     string temp_id_buku = peminjaman[0].id_buku;
-    string temp_id_peminjam = peminjaman[0].id_peminjam;
-    string temp_benar_id_buku;
-    string temp_benar_id_peminjam;
+    string temp_benar;
     while (s < n && !found)
     {
-        temp_benar_id_buku = peminjaman[s].id_buku;
-        temp_benar_id_peminjam = peminjaman[s].id_peminjam;
-        if (temp_benar_id_buku == temp_id_buku && temp_benar_id_peminjam == temp_benar_id_peminjam)
+        temp_benar = buku[s].id_buku;
+        if (temp_benar == temp_id_buku)
         {
             found = true;
         }
         else
         {
-            s++; // s = index yg isinya adalah id_buku yg akan dikembalikan
+            s++; // s = index yg isinya adalah id_buku yg akan dimpinjam
         }
     }
-    // end cari id_buku yang ingin dikembalikan tersimpan di index mana
+    // end cari id_buku yang ingin dipinjam tersimpan di index mana
 
     if (!found)
     {
         cout << endl
-             << "Tidak ada data peminjaman tersebut" << endl;
+             << "Buku yang anda cari tidak tersedia" << endl;
         fclose(fp_data_peminjaman);
         return;
     }
+    else if (buku[s].tersedia == 0)
+    {
+        cout << "Maaf, stok buku yang anda cari lagi dipinjam smua" << endl; // bikinin kat kata yg indah
+        fclose(fp_data_peminjaman);
+    }
     else
     {
-        //////// GESER DULU DATA PEMINJAMAN YG MAU DI HAPUUUSSS// NGANTUK MW TDR DULU
         // menulis data peminjam ke file data_peminjaman.txt
         fprintf(fp_data_peminjaman,
                 "%s| %s| %s|\n",
