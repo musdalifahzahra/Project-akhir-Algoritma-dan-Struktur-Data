@@ -1,7 +1,7 @@
 #include <iostream>
 #include <iomanip>
 using namespace std;
-///perubahanpunyaku musdal duluuu
+///perubahanpunyaku duluuu
 /////////// comeeennn
 
 struct dataBuku
