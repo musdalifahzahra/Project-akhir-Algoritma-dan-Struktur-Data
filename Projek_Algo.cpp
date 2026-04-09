@@ -128,8 +128,7 @@ buku[jumlahData].terpinjam)!= EOF){
 
 
 
-void peminjaman_buku()
-{
+void peminjaman_buku(){
 }
 
 void input_peminjaman_pengembalian()
