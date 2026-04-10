@@ -142,8 +142,6 @@ void melihat_daftar_buku(dataBuku *ptr, int &jumlah)
     cout << "=== TAMPILKAN DATA ===\n";
 }
 
-// void peminjaman_buku(){
-// }
 
 // musdal
 // membaca file data_buku.txt
