@@ -51,18 +51,18 @@ int main()
     cout << "4. Pengembalian buku\n";
     cout << "5. Keluar\n";
     cout << "============================\n";
-    cout << "Pilih menu (1-5): "; cin>>pilihan;
+    cout << "Pilih menu (1-5): "; cin>>pilihan;cin.ignore();
     
     switch (pilihan)
     {
     case 1:
     {
-        menambahkan_data_buku(buku, jumlahData);
+        menambahkan_data_buku(ptr, jumlahData);
         break;
     }
     case 2:
     {
-        melihat_daftar_buku(buku, jumlahData);
+        melihat_daftar_buku(ptr, jumlahData);
         break;
     }
     case 3:
