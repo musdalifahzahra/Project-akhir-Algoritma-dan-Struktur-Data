@@ -166,7 +166,7 @@ void membaca_data_buku_txt()
     // n = jumlah data yang tersimpan di buku[]
     n = 0;
     while (fscanf(fp_data_buku,
-                  "%s %s %d %d %d %d\n",
+                  "%[^|]| %[^|]| %[^|]| %[^|]| %[^|]| %[^|]|\n",
                   buku[n].id_buku, buku[n].judul_buku,
                   &buku[n].stok_buku, &buku[n].tersedia,
                   &buku[n].terpinjam, &buku[n].total_peminjaman) != EOF)
