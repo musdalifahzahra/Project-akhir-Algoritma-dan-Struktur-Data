@@ -109,7 +109,7 @@ void simpan_data(dataBuku *ptr, int &jumlah)
 void menambahkan_data_buku(dataBuku *ptr, int &jumlah)
 {
     cout << "=== TAMBAH DATA LUKISAN ===\n";
-    cout << left << setw(15) << "ID Buku " << ": "; cin.ignore();
+    cout << left << setw(15) << "ID Buku " << ": "; 
     cin.getline((ptr + jumlah)->id_buku, 10); 
     cout << left << setw(15) << "Judul Buku" << ": ";
     cin.getline((ptr + jumlah)->judul_buku, 100);
@@ -284,7 +284,7 @@ void peminjaman_buku()
         for (int i = 0; i < n; i++)
         {
             fprintf(fp_data_buku,
-                    "%s| %s| %d %d %d %d\n",
+                    "%s| %s| %d| %d| %d| %d\n",
                     buku[i].id_buku, buku[i].judul_buku,
                     buku[i].stok_buku, buku[i].tersedia,
                     buku[i].terpinjam, buku[i].total_peminjaman);
