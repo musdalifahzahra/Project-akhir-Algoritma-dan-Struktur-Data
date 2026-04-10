@@ -97,7 +97,7 @@ void simpan_data(dataBuku *ptr, int &jumlah)
     }
     else
     {
-        fprintf(fptr, "%s, %s, %d, %d, %d, %d\n",
+        fprintf(fptr, "%s| %s| %d| %d| %d| %d\n",
                 (ptr + jumlah - 1)->id_buku, (ptr + jumlah - 1)->judul_buku,
                 (ptr + jumlah - 1)->stok_buku, (ptr + jumlah - 1)->tersedia,
                 (ptr + jumlah - 1)->terpinjam, (ptr + jumlah - 1)->total_peminjaman);
@@ -137,7 +137,7 @@ void melihat_daftar_buku(dataBuku *ptr, int &jumlah)
         return;
     }
     jumlahData = 0;
-    while (fscanf(fptr, "%s, %s, %d, %d, %d, %d\n",
+    while (fscanf(fptr, "%s| %s| %d| %d| %d| %d\n",
                   buku[jumlahData].id_buku, buku[jumlahData].judul_buku,
                   buku[jumlahData].stok_buku, buku[jumlahData].total_peminjaman, buku[jumlahData].tersedia,
                   buku[jumlahData].terpinjam) != EOF)
