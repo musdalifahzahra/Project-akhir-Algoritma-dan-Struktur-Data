@@ -115,10 +115,10 @@ void menambahkan_data_buku(dataBuku *ptr, int &jumlah)
     cin.getline((ptr + jumlah)->judul_buku, 100);
     cout << left << setw(15) << "Stok Buku" << ": ";
     cin >> ((ptr + jumlah)->stok_buku);
-    // cout << left << setw(15) << "Total yang tersedia" << ": ";
-    // cin >> ((ptr + jumlah)->tersedia); cout<<endl;
-    // cout << left << setw(15) << "Total yang terpinjam" << ": ";
-    // cin >> ((ptr + jumlah)->terpinjam); cout<<endl;
+    cout << left << setw(15) << "Total yang tersedia" << ": ";
+    cin >> ((ptr + jumlah)->tersedia); cout<<endl;
+    cout << left << setw(15) << "Total yang terpinjam" << ": ";
+    cin >> ((ptr + jumlah)->terpinjam); cout<<endl;
     jumlah++;
     simpan_data(ptr, jumlah);
     cout << "Data berhasil ditambahkan!\n";
@@ -166,7 +166,7 @@ void membaca_data_buku_txt()
     // n = jumlah data yang tersimpan di buku[]
     n = 0;
     while (fscanf(fp_data_buku,
-                  "%[^|]| %[^|]| %[^|]| %[^|]| %[^|]| %[^|]|\n",
+                  "%[^|]| %[^|]| %d| %d| %d| %d\n",
                   buku[n].id_buku, buku[n].judul_buku,
                   &buku[n].stok_buku, &buku[n].tersedia,
                   &buku[n].terpinjam, &buku[n].total_peminjaman) != EOF)
