@@ -82,7 +82,7 @@ int main()
         cout << "Pilihan tidak ada!\n";
     }
     }
-    }while(pilihan!=5)
+    }while(pilihan!=5);
    
 }
 
