@@ -35,6 +35,10 @@ void melihat_daftar_buku();
 void peminjaman_buku();
 void pengembalian_buku();
 
+FILE *fptr = fopen("data_buku.txt", "a");
+dataBuku *ptr = buku;
+int pilihan, jumlahData = 0;
+
 int main()
 {
     cout << "==========================\n"; // mau pake setfill
@@ -76,9 +80,6 @@ int main()
     }
 }
 
-FILE *fptr = fopen("data_buku.txt", "a");
-dataBuku *ptr = buku;
-int pilihan, jumlahData = 0;
 
 ////////simpan data
 void simpan_data(dataBuku *ptr, int &jumlah)
@@ -140,6 +141,7 @@ void melihat_daftar_buku(dataBuku *ptr, int &jumlah)
     fclose(fptr);
     int metode;
     cout << "=== TAMPILKAN DATA ===\n";
+    
 }
 
 // void peminjaman_buku(){
