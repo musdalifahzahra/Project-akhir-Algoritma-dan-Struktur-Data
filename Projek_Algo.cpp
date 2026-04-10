@@ -29,15 +29,20 @@ struct pengembalianBuku
 };
 pengembalianBuku pengembalian;
 
-void simpan_data();
-void menambahkan_data_buku();
-void melihat_daftar_buku();
+void simpan_data(dataBuku *ptr, int &jumlah);
+void menambahkan_data_buku(dataBuku *ptr, int &jumlah);
+void melihat_daftar_buku(dataBuku *ptr, int &jumlah);
 void peminjaman_buku();
 void pengembalian_buku();
 
+FILE *fptr = fopen("data_buku.txt", "a");
+dataBuku *ptr = buku;
+int pilihan, jumlahData = 0;
+
 int main()
 {
-    cout << "==========================\n"; // mau pake setfill
+    do{
+ cout << "==========================\n"; // mau pake setfill
     cout << "    Lentera Digital\n";
     cout << "==========================\n";
     cout << "1. Menambah data buku\n";
@@ -46,17 +51,18 @@ int main()
     cout << "4. Pengembalian buku\n";
     cout << "5. Keluar\n";
     cout << "============================\n";
-    cout << "Pilih menu (1-5): ";
+    cout << "Pilih menu (1-5): "; cin>>pilihan;
+    
     switch (pilihan)
     {
     case 1:
     {
-        menambahkan_data_buku();
+        menambahkan_data_buku(buku, jumlahData);
         break;
     }
     case 2:
     {
-        melihat_daftar_buku();
+        melihat_daftar_buku(buku, jumlahData);
         break;
     }
     case 3:
@@ -72,13 +78,14 @@ int main()
     case 5:
     {
         cout << "Terima Kasih Telah menggunakan program ini!:>\n";
+    }default:{
+        cout << "Pilihan tidak ada!\n";
     }
     }
+    }while(pilihan!=5);
+   
 }
 
-FILE *fptr = fopen("data_buku.txt", "a");
-dataBuku *ptr = buku;
-int pilihan, jumlahData = 0;
 
 ////////simpan data
 void simpan_data(dataBuku *ptr, int &jumlah)
@@ -102,16 +109,16 @@ void simpan_data(dataBuku *ptr, int &jumlah)
 void menambahkan_data_buku(dataBuku *ptr, int &jumlah)
 {
     cout << "=== TAMBAH DATA LUKISAN ===\n";
-    cout << left << setw(15) << "ID Buku " << ": ";
-    cin.getline((ptr + jumlah)->id_buku, 10);
+    cout << left << setw(15) << "ID Buku " << ": "; cin.ignore();
+    cin.getline((ptr + jumlah)->id_buku, 10); 
     cout << left << setw(15) << "Judul Buku" << ": ";
     cin.getline((ptr + jumlah)->judul_buku, 100);
     cout << left << setw(15) << "Stok Buku" << ": ";
     cin >> ((ptr + jumlah)->stok_buku);
-    cout << left << setw(15) << "Total yang tersedia" << ": ";
-    cin >> ((ptr + jumlah)->tersedia);
-    cout << left << setw(15) << "Total yang terpinjam" << ": ";
-    cin >> ((ptr + jumlah)->terpinjam);
+    // cout << left << setw(15) << "Total yang tersedia" << ": ";
+    // cin >> ((ptr + jumlah)->tersedia); cout<<endl;
+    // cout << left << setw(15) << "Total yang terpinjam" << ": ";
+    // cin >> ((ptr + jumlah)->terpinjam); cout<<endl;
     jumlah++;
     simpan_data(ptr, jumlah);
     cout << "Data berhasil ditambahkan!\n";
@@ -140,6 +147,7 @@ void melihat_daftar_buku(dataBuku *ptr, int &jumlah)
     fclose(fptr);
     int metode;
     cout << "=== TAMPILKAN DATA ===\n";
+    
 }
 
 
