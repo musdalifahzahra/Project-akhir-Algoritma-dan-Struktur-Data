@@ -110,8 +110,8 @@ void simpan_data(dataBuku *ptr, int &jumlah)
     {
         fprintf(fptr, "%s| %s| %d| %d| %d| %d\n",
                 (ptr + jumlah - 1)->id_buku, (ptr + jumlah - 1)->judul_buku,
-                (ptr + jumlah - 1)->stok_buku, (ptr + jumlah - 1)->total_peminjaman,
-                (ptr + jumlah - 1)->tersedia, (ptr + jumlah - 1)->terpinjam);
+                (ptr + jumlah - 1)->stok_buku, (ptr + jumlah - 1)->,
+                (ptr + jumlah - 1)->terpinjam, (ptr + jumlah - 1)->tersediatotal_peminjaman);
         fclose(fptr);
     }
 }
@@ -339,8 +339,8 @@ void membaca_data_buku_txt()
     while (fscanf(fp_data_buku,
                   "%[^|]| %[^|]| %d| %d| %d| %d\n",
                   buku[n].id_buku, buku[n].judul_buku,
-                  &buku[n].stok_buku, &buku[n].total_peminjaman,
-                  &buku[n].tersedia, &buku[n].terpinjam) != EOF)
+                  &buku[n].stok_buku, &buku[n].tersedia,
+                  &buku[n].terpinjam, &buku[n].total_peminjaman) != EOF)
     {
         n++;
     };
@@ -387,7 +387,7 @@ void peminjaman_buku()
     cout << "===== PEMINJAMAN BUKU =====" << endl;
     cout << "ID Anggota  : ";
     cin >> peminjaman[0].id_peminjam;
-    cout << "Nama Anggota: ";
+    cout << "Nama Anggota:";
     cin.ignore();
     cin.getline(peminjaman[0].nama_peminjam, 20);
     cout << "ID Buku     : ";
@@ -455,8 +455,8 @@ void peminjaman_buku()
             fprintf(fp_data_buku,
                     "%s| %s| %d| %d| %d| %d\n",
                     buku[i].id_buku, buku[i].judul_buku,
-                    buku[i].stok_buku, buku[i].total_peminjaman,
-                    buku[i].tersedia, buku[i].terpinjam);
+                    buku[i].stok_buku, buku[i].tersedia,
+                    buku[i].terpinjam, buku[i].total_peminjaman);
         }
         fclose(fp_data_buku);
     }
@@ -475,7 +475,8 @@ void pengembalian_buku()
     cout << "===== PENGEMBALIAN BUKU =====" << endl;
     cout << "ID Anggota  : ";
     cin >> pengembalian.id_peminjam;
-    << "ID Buku     : ";
+    cout << endl
+         << "ID Buku     : ";
     cin >> pengembalian.id_buku;
     cout << endl;
 
@@ -535,10 +536,10 @@ void pengembalian_buku()
         for (int i = 0; i < n; i++)
         {
             fprintf(fp_data_buku,
-                    "%s| %s| %d| %d| %d| %d\n",
+                    "%s, %s, %d, %d, %d, %d\n",
                     buku[i].id_buku, buku[i].judul_buku,
-                    buku[i].stok_buku, buku[i].total_peminjaman,
-                    buku[i].tersedia, buku[i].terpinjam);
+                    buku[i].stok_buku, buku[i].tersedia,
+                    buku[i].terpinjam, buku[i].total_peminjaman);
         }
 
         fclose(fp_data_buku);

@@ -387,7 +387,7 @@ void peminjaman_buku()
     cout << "===== PEMINJAMAN BUKU =====" << endl;
     cout << "ID Anggota  : ";
     cin >> peminjaman[0].id_peminjam;
-    cout << "Nama Anggota: ";
+    cout << "Nama Anggota:";
     cin.ignore();
     cin.getline(peminjaman[0].nama_peminjam, 20);
     cout << "ID Buku     : ";
@@ -475,7 +475,8 @@ void pengembalian_buku()
     cout << "===== PENGEMBALIAN BUKU =====" << endl;
     cout << "ID Anggota  : ";
     cin >> pengembalian.id_peminjam;
-    << "ID Buku     : ";
+    cout << endl
+         << "ID Buku     : ";
     cin >> pengembalian.id_buku;
     cout << endl;
 
@@ -537,8 +538,8 @@ void pengembalian_buku()
             fprintf(fp_data_buku,
                     "%s| %s| %d| %d| %d| %d\n",
                     buku[i].id_buku, buku[i].judul_buku,
-                    buku[i].stok_buku, buku[i].total_peminjaman,
-                    buku[i].tersedia, buku[i].terpinjam);
+                    buku[i].stok_buku,buku[i].total_peminjaman,
+                     buku[i].tersedia, buku[i].terpinjam );
         }
 
         fclose(fp_data_buku);

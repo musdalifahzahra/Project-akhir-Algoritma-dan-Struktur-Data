@@ -387,7 +387,7 @@ void peminjaman_buku()
     cout << "===== PEMINJAMAN BUKU =====" << endl;
     cout << "ID Anggota  : ";
     cin >> peminjaman[0].id_peminjam;
-    cout << "Nama Anggota: ";
+    cout << "Nama Anggota:";
     cin.ignore();
     cin.getline(peminjaman[0].nama_peminjam, 20);
     cout << "ID Buku     : ";
@@ -475,7 +475,8 @@ void pengembalian_buku()
     cout << "===== PENGEMBALIAN BUKU =====" << endl;
     cout << "ID Anggota  : ";
     cin >> pengembalian.id_peminjam;
-    << "ID Buku     : ";
+    cout << endl
+         << "ID Buku     : ";
     cin >> pengembalian.id_buku;
     cout << endl;
 

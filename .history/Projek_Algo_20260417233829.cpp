@@ -32,7 +32,7 @@ pengembalianBuku pengembalian;
 void simpan_data(dataBuku *ptr, int &jumlah);
 void menambahkan_data_buku(dataBuku *ptr, int &jumlah);
 void melihat_daftar_buku(dataBuku *ptr, int &jumlah);
-void cari_buku();
+void cari_buku(dataBuku *ptr, int &jumlah);
 void peminjaman_buku();
 void pengembalian_buku();
 
@@ -72,7 +72,7 @@ int main()
         }
         case 3:
         {
-            cari_buku();
+            cari_buku(ptr, jumlahData);
             break;
         }
         case 4:
@@ -110,8 +110,8 @@ void simpan_data(dataBuku *ptr, int &jumlah)
     {
         fprintf(fptr, "%s| %s| %d| %d| %d| %d\n",
                 (ptr + jumlah - 1)->id_buku, (ptr + jumlah - 1)->judul_buku,
-                (ptr + jumlah - 1)->stok_buku, (ptr + jumlah - 1)->total_peminjaman,
-                (ptr + jumlah - 1)->tersedia, (ptr + jumlah - 1)->terpinjam);
+                (ptr + jumlah - 1)->stok_buku, (ptr + jumlah - 1)->tersedia,
+                (ptr + jumlah - 1)->terpinjam, (ptr + jumlah - 1)->total_peminjaman);
         fclose(fptr);
     }
 }
@@ -263,68 +263,22 @@ void melihat_daftar_buku(dataBuku *ptr, int &jumlah)
 //  }
 
 void membaca_data_buku_txt();
-int n; // jumlah data yang tersimpan di buku[]
 void cari_buku()
 {
     membaca_data_buku_txt();
 
-    // Input nama buku yang dicari
-    string cari;
-    cout << "======= CARI DATA BUKU =======" << endl
-         << "Masukkan Judul dengan huruf kapital di awal setiap kata (contoh: Musdalifah Zah Yhahaha)" << endl
-         << "Cari Buku: ";
-    getline(cin, cari);
-
-    // Proses searching (sequential search tanpa sentinel)
-    bool found = false;
-    int s = 0;
-    string temp_benar;
-    while (s < n and found == false)
-    {
-        temp_benar = buku[s].judul_buku;
-        if (temp_benar == cari)
-        {
-            found = true;
-        }
-        else
-        {
-            s++; // s = index yg isinya adalah data Buku yg di cari
-        }
-    }
-
-    if (found == false)
-    {
-        cout << endl
-             << "Judul Buku tidak ditemukan!" << endl;
-    }
-    else
-    {
-        cout << endl
-             << "----------------------------------------------------------------------------" << endl
-             << left << setfill(' ') << setw(10) << "ID buku" << " "
-             << left << setfill(' ') << setw(15) << "judul" << " "
-             << left << setfill(' ') << setw(6) << "stok" << " "
-             << left << setfill(' ') << setw(17) << "Total Peminjaman" << " "
-             << left << setfill(' ') << setw(8) << "Tersedia" << " "
-             << left << setfill(' ') << setw(3) << "Sedang dipinjam" << " "
-             << endl
-             << "----------------------------------------------------------------------------" << endl
-
-             << left << setfill(' ') << setw(10) << buku[s].id_buku << " "
-             << left << setfill(' ') << setw(15) << buku[s].judul_buku << " "
-             << left << setfill(' ') << setw(6) << buku[s].stok_buku << " "
-             << left << setfill(' ') << setw(17) << buku[s].total_peminjaman << " "
-             << left << setfill(' ') << setw(8) << buku[s].tersedia << " "
-             << left << setfill(' ') << setw(3) << buku[s].terpinjam << " "
-             << endl;
-
-        cout << "============================================================================" << endl
-             << endl;
-    }
+    // Input nama pelukis yang dicari
+	string cari;
+	cout << "================================== CARI DATA ====================================" << endl
+		 << "Masukkan nama dengan huruf kapital di awal setiap kata (contoh: Musdalifah Zahra)" << endl
+		 << "Cari pelukis: ";
+	cin.ignore();
+	getline(cin, cari);
 }
 
 // musdal
 // membaca file data_buku.txt
+int n; // jumlah data yang tersimpan di buku[]
 void membaca_data_buku_txt()
 {
     FILE *fp_data_buku = fopen("data_buku.txt", "r");
@@ -339,8 +293,8 @@ void membaca_data_buku_txt()
     while (fscanf(fp_data_buku,
                   "%[^|]| %[^|]| %d| %d| %d| %d\n",
                   buku[n].id_buku, buku[n].judul_buku,
-                  &buku[n].stok_buku, &buku[n].total_peminjaman,
-                  &buku[n].tersedia, &buku[n].terpinjam) != EOF)
+                  &buku[n].stok_buku, &buku[n].tersedia,
+                  &buku[n].terpinjam, &buku[n].total_peminjaman) != EOF)
     {
         n++;
     };
@@ -387,7 +341,7 @@ void peminjaman_buku()
     cout << "===== PEMINJAMAN BUKU =====" << endl;
     cout << "ID Anggota  : ";
     cin >> peminjaman[0].id_peminjam;
-    cout << "Nama Anggota: ";
+    cout << "Nama Anggota:";
     cin.ignore();
     cin.getline(peminjaman[0].nama_peminjam, 20);
     cout << "ID Buku     : ";
@@ -455,8 +409,8 @@ void peminjaman_buku()
             fprintf(fp_data_buku,
                     "%s| %s| %d| %d| %d| %d\n",
                     buku[i].id_buku, buku[i].judul_buku,
-                    buku[i].stok_buku, buku[i].total_peminjaman,
-                    buku[i].tersedia, buku[i].terpinjam);
+                    buku[i].stok_buku, buku[i].tersedia,
+                    buku[i].terpinjam, buku[i].total_peminjaman);
         }
         fclose(fp_data_buku);
     }
@@ -475,7 +429,8 @@ void pengembalian_buku()
     cout << "===== PENGEMBALIAN BUKU =====" << endl;
     cout << "ID Anggota  : ";
     cin >> pengembalian.id_peminjam;
-    << "ID Buku     : ";
+    cout << endl
+         << "ID Buku     : ";
     cin >> pengembalian.id_buku;
     cout << endl;
 
@@ -535,10 +490,10 @@ void pengembalian_buku()
         for (int i = 0; i < n; i++)
         {
             fprintf(fp_data_buku,
-                    "%s| %s| %d| %d| %d| %d\n",
+                    "%s, %s, %d, %d, %d, %d\n",
                     buku[i].id_buku, buku[i].judul_buku,
-                    buku[i].stok_buku, buku[i].total_peminjaman,
-                    buku[i].tersedia, buku[i].terpinjam);
+                    buku[i].stok_buku, buku[i].tersedia,
+                    buku[i].terpinjam, buku[i].total_peminjaman);
         }
 
         fclose(fp_data_buku);
