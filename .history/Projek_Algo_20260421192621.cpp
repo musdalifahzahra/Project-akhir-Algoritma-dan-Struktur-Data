@@ -355,7 +355,7 @@ void membaca_data_buku_txt()
 
 // membaca file data_peminjaman.txt
 int m; // jumlah data yamg tersimpan di peminjaman[]
-void membaca_data_peminjaman_txt(peminjamanBuku *&head, peminjamanBuku *&tail)
+void membaca_data_peminjaman_txt(peminjamanBuku *head, peminjamanBuku *tail)
 {
     FILE *fp_data_peminjaman = fopen("data_peminjaman.txt", "r");
     if (!fp_data_peminjaman)
@@ -613,13 +613,10 @@ void peminjaman_buku()
 }
 // end void peminjaman buku
 
-void hapus_data_peminjaman(peminjamanBuku *&head, char *id_peminjam, char *id_buku, bool &respon_pengembalian)
+void hapus_data_peminjaman(peminjamanBuku *head, char *id_peminjam, char *id_buku, bool respon_pengembalian)
 {
     if (head == NULL)
-    {
-        respon_pengembalian = false;
         return;
-    }
 
     string kembali_idBuku = id_buku;
     string kembali_idPeminjam = id_peminjam;
@@ -631,17 +628,13 @@ void hapus_data_peminjaman(peminjamanBuku *&head, char *id_peminjam, char *id_bu
     {
         peminjamanBuku *hapus = head;
         head = head->next;
-        delete hapus;
         respon_pengembalian = true;
         return;
     }
     // b. jika bukan di head, cari ke node selanjutnya
     peminjamanBuku *temp = head;
-    while (temp->next != NULL)
+    while (temp->next != nullptr)
     {
-        pinjam_idBuku = temp->next->id_buku;
-        pinjam_idPeminjam = temp->next->id_peminjam;
-
         if (pinjam_idBuku == kembali_idBuku &&
             pinjam_idPeminjam == kembali_idPeminjam)
         {
@@ -651,7 +644,7 @@ void hapus_data_peminjaman(peminjamanBuku *&head, char *id_peminjam, char *id_bu
         temp = temp->next;
     }
     // c. data yg di cari tidak ada
-    if (temp->next == NULL)
+    if (temp->next == nullptr)
     {
         respon_pengembalian = false;
         return;
@@ -666,8 +659,8 @@ void hapus_data_peminjaman(peminjamanBuku *&head, char *id_peminjam, char *id_bu
 void pengembalian_buku()
 {
 
-    peminjamanBuku *head = NULL;
-    peminjamanBuku *tail = NULL;
+    peminjamanBuku *head = nullptr;
+    peminjamanBuku *tail = nullptr;
     bool respon_pengembalian = false;
 
     // 1. membaca file data_buku.txt dan simpan data di buku[]
@@ -689,7 +682,7 @@ void pengembalian_buku()
     // 5. apabila sebelumnya dia tidak melakukan peminjaman
     if (!respon_pengembalian)
     {
-        cout << "Tidak ada peminjaman buku tersebut" << endl;
+        cout << "Anggota tidak melakukan peminjaman buku tersebut";
     }
     // 6. Apabila sebelumnya dia melakukan peminjaman
     else
@@ -738,14 +731,15 @@ void pengembalian_buku()
 
         peminjamanBuku *temp = head;
 
-        while (temp != NULL)
+        while(temp!=nullptr)
+        //
+        for (int i = 0; i < m; i++)
         {
             fprintf(fp_data_peminjaman,
                     "%s| %s| %s|\n",
-                    temp->id_peminjam,
-                    temp->nama_peminjam,
-                    temp->id_buku);
-            temp = temp->next;
+                    peminjaman[i].id_peminjam,
+                    peminjaman[i].nama_peminjam,
+                    peminjaman[i].id_buku);
         }
 
         cout << "Data peminjaman berhasil diupdate!" << endl;

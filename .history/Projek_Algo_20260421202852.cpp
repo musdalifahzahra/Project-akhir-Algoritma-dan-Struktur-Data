@@ -689,7 +689,7 @@ void pengembalian_buku()
     // 5. apabila sebelumnya dia tidak melakukan peminjaman
     if (!respon_pengembalian)
     {
-        cout << "Tidak ada peminjaman buku tersebut" << endl;
+        cout << "Anggota tidak melakukan peminjaman buku tersebut";
     }
     // 6. Apabila sebelumnya dia melakukan peminjaman
     else
