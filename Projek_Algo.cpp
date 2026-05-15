@@ -295,7 +295,7 @@ void cari_buku()
     membaca_data_buku_txt();
     string cari;
     cout << "======= CARI DATA BUKU =======" << endl
-         << "Masukkan Judul dengan huruf kapital di awal setiap kata (contoh: Musdalifah Zah Yhahaha)" << endl
+         << "Masukkan Judul dengan huruf kapital di awal setiap kata" << endl
          << "Cari Buku: ";
     getline(cin, cari);
 
