@@ -53,6 +53,8 @@ void cari_buku();
 void peminjaman_buku();
 void pengembalian_buku();
 void riwayat_peminjaman();
+void membaca_data_buku_txt();
+
 
 FILE *fptr = fopen("data_buku.txt", "a");
 dataBuku *ptr = buku;
@@ -287,13 +289,10 @@ void melihat_daftar_buku(dataBuku *ptr, int &jumlah)
 //  {
 //  }
 
-void membaca_data_buku_txt();
 int n; // jumlah data yang tersimpan di buku[]
 void cari_buku()
 {
     membaca_data_buku_txt();
-
-    // Input nama buku yang dicari
     string cari;
     cout << "======= CARI DATA BUKU =======" << endl
          << "Masukkan Judul dengan huruf kapital di awal setiap kata (contoh: Musdalifah Zah Yhahaha)" << endl
@@ -393,7 +392,7 @@ void membaca_data_peminjaman_txt(peminjamanBuku *&head, peminjamanBuku *&tail)
                   new_node->id_buku) != EOF)
     {
         new_node->next = NULL;
-        // masukan ke  linked
+        // data dimasukkan ke linked list
         if (head == NULL)
         {
             head = new_node;
@@ -682,27 +681,23 @@ void riwayat_peminjaman()
 
         switch (pilihan)
         {
-
         case 1:
             baca_file_ke_linkedlist();
             tampil_awal_akhir();
             break;
-
         case 2:
             baca_file_ke_linkedlist();
             tampil_akhir_awal();
             break;
-
         case 3:
             cout << "Program selesai\n";
             break;
-
         default:
             cout << "Pilihan tidak ada!\n";
         }
-
     } while (pilihan != 3);
 }
+
 void baca_file_ke_linkedlist()
 {
     FILE *fp = fopen("riwayat_peminjaman.txt", "r");
@@ -727,7 +722,7 @@ void baca_file_ke_linkedlist()
                            NB->nama_peminjam,
                            NB->id_buku);
 
-        if (hasil == EOF)
+        if (hasil != 3)
         {
             delete NB;
             break;
