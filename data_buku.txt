@@ -1,4 +1,14 @@
 111| buku pertama| 100| 2| 99| 1
 222| buku kedua| 200| 0| 200| 0
 333| buku ketiga| 1| 1| 1| 0
-444| buku keempat| 40| 0| 40| 089| The Night| 20| 0| 20| 0
+444| buku keempat| 40| 0| 40| 0
+89| The Night| 20| 0| 20| 0
+1| jangan kasih aku| 20| 1| 20| 0
+1| sesudah kamu| 20| 0| 20| 0
+11| 1| 1| 90| 1| 1
+5| 22nya salahku| 10| 0| 10| 0
+7| masa iya kayak gitu| 20| 0| 20| 0
+10| 777| 10| 0| 10| 0
+1| 1| 1| 0| 1| 0
+20| apa iya ini last| 350| 10| 340| 1
+01| okay last| 10| 1| 9| 1
