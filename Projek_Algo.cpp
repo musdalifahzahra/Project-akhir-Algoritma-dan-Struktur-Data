@@ -55,7 +55,8 @@ void pengembalian_buku();
 void riwayat_peminjaman();
 void membaca_data_buku_txt();
 
-FILE *fptr = fopen("data_buku.txt", "a");
+
+// FILE *fptr = fopen("data_buku.txt", "a");
 dataBuku *ptr = buku;
 int pilihan, jumlahData = 0;
 
@@ -126,6 +127,7 @@ int main()
 ////////simpan data
 void simpan_data(dataBuku *ptr, int &jumlah)
 {
+    FILE *fptr=fopen("data_buku.txt", "a");
     if (fptr == NULL)
     {
         cout << "Gagal membuka file!\n";
@@ -145,7 +147,7 @@ void simpan_data(dataBuku *ptr, int &jumlah)
 void menambahkan_data_buku(dataBuku *ptr, int &jumlah)
 {
     cout << "ID Buku            : ";
-    // cin.ignore();
+    
     cin.getline((ptr + jumlah)->id_buku, 10);
 
     cout << "Judul Buku         : ";
@@ -153,19 +155,20 @@ void menambahkan_data_buku(dataBuku *ptr, int &jumlah)
 
     cout << "Stok buku          : ";
     cin >> ((ptr + jumlah)->stok_buku);
+    cin.ignore();
 
     (ptr + jumlah)->total_peminjaman = 0;
     (ptr + jumlah)->tersedia = (ptr + jumlah)->stok_buku;
     (ptr + jumlah)->terpinjam = 0;
 
-    // cout << "Total peminjaman   : ";
-    // cin >> ((ptr + jumlah)->total_peminjaman);
+    cout << "Total peminjaman   : ";
+    cin >> ((ptr + jumlah)->total_peminjaman);
 
-    // cout << "Total yang tersedia: ";
-    // cin >> ((ptr + jumlah)->tersedia);
+    cout << "Total yang tersedia: ";
+    cin >> ((ptr + jumlah)->tersedia);
 
-    // cout << "Total yang terpinjam: ";
-    // cin >> ((ptr + jumlah)->terpinjam);
+    cout << "Total yang terpinjam: ";
+    cin >> ((ptr + jumlah)->terpinjam);
 
     // dreeyyyyy maaapp, mau cek bentarrrrr,
     // ini yg bawah punya km gk ak apa apa iiiinnn, cuma komenin doanggggg
@@ -194,6 +197,7 @@ void menambahkan_data_buku(dataBuku *ptr, int &jumlah)
 void melihat_daftar_buku(dataBuku *ptr, int &jumlah)
 {
     cout << setfill(' ');
+    FILE *fptr;
     fptr = fopen("data_buku.txt", "r");
     if (fptr == NULL)
     {
@@ -203,14 +207,21 @@ void melihat_daftar_buku(dataBuku *ptr, int &jumlah)
         return;
     }
     jumlahData = 0;
-    while (fscanf(fptr, "%[^|]| %[^|]| %d| %d| %d| %d\n",
+    while (fscanf(fptr, " %[^|]| %[^|]| %d| %d| %d| %d\n",
                   buku[jumlahData].id_buku, buku[jumlahData].judul_buku,
                   &buku[jumlahData].stok_buku, &buku[jumlahData].total_peminjaman,
-                  &buku[jumlahData].tersedia, &buku[jumlahData].terpinjam) != EOF)
+                  &buku[jumlahData].tersedia, &buku[jumlahData].terpinjam) == 6)
     {
         jumlahData++;
     }
     fclose(fptr);
+
+    if(jumlahData==0){
+        cout<<"Data tidak dapat dibaca atau format file salah\n";
+        system("pause");
+        system("cls");
+        return;
+    }
 
     int metode;
     cout << "====== TAMPILKAN DATA ======\n";
