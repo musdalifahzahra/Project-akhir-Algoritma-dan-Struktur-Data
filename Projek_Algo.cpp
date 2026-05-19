@@ -55,7 +55,6 @@ void pengembalian_buku();
 void riwayat_peminjaman();
 void membaca_data_buku_txt();
 
-
 FILE *fptr = fopen("data_buku.txt", "a");
 dataBuku *ptr = buku;
 int pilihan, jumlahData = 0;
@@ -462,7 +461,7 @@ void peminjaman_buku()
     }
     else if (buku[s].tersedia == 0)
     {
-        cout << "Maaf, stok buku yang anda cari lagi dipinjam smua" << endl; // bikinin kat kata yg indah
+        cout << "Maaf, buku yang anda cari sedang dipinjam semua" << endl;
         fclose(fp_data_peminjaman);
     }
 
@@ -670,15 +669,15 @@ void tampil_akhir_awal();
 void riwayat_peminjaman()
 {
     int pilihan;
-    do
-    {
-        cout << "1. peminjaman terlama -> terbaru\n";
-        cout << "2. peminjaman terbaru -> terlama\n";
-        cout << "3. Keluar\n";
-        cout << "Pilih: ";
-        cin >> pilihan;
-        cin.ignore();
 
+    cout << "1. peminjaman terlama -> terbaru\n";
+    cout << "2. peminjaman terbaru -> terlama\n";
+    cout << "Pilih: ";
+    cin >> pilihan;
+    cin.ignore();
+
+    if (pilihan == 1 || pilihan == 2)
+    {
         switch (pilihan)
         {
         case 1:
@@ -689,13 +688,16 @@ void riwayat_peminjaman()
             baca_file_ke_linkedlist();
             tampil_akhir_awal();
             break;
-        case 3:
-            cout << "Program selesai\n";
-            break;
         default:
             cout << "Pilihan tidak ada!\n";
         }
-    } while (pilihan != 3);
+    }
+    else 
+    {
+        cout << "Pilihan tidak valid\n";
+        system("pause");
+        system("cls");
+    }
 }
 
 void baca_file_ke_linkedlist()
