@@ -435,7 +435,7 @@ void peminjaman_buku()
             return;
         }
 
-        cout << "===== PEMINJAMAN BUKU =====" << endl;
+        cout << "\n===== PEMINJAMAN BUKU =====" << endl;
         cout << "ID Anggota  : ";
         cin >> peminjaman[0].id_peminjam;
         cout << "Nama Anggota: ";
@@ -465,14 +465,13 @@ void peminjaman_buku()
 
         if (!found)
         {
-            cout << endl
-                 << "Buku yang anda cari tidak tersedia" << endl;
+            cout << "Buku yang anda cari tidak tersedia\n\n";
             fclose(fp_data_peminjaman);
             return;
         }
         else if (buku[s].tersedia <= 0)
         {
-            cout << "Maaf, buku yang anda cari sedang dipinjam semua" << endl;
+            cout << "Maaf, buku yang anda cari sedang dipinjam semua\n\n";
             fclose(fp_data_peminjaman);
         }
 
@@ -486,7 +485,7 @@ void peminjaman_buku()
                     peminjaman[0].nama_peminjam,
                     peminjaman[0].id_buku);
 
-            cout << "Data peminjaman berhasil disimpan!" << endl;
+            cout << "Data peminjaman berhasil disimpan!\n\n";
             fclose(fp_data_peminjaman);
 
             // masukkan data peminjaman ke file riwayat_peminjaman.txt
@@ -598,7 +597,7 @@ void pengembalian_buku()
     else
     {
         // 3. input data pengembalian buku
-        cout << "===== PENGEMBALIAN BUKU =====" << endl;
+        cout << "\n===== PENGEMBALIAN BUKU =====\n";
         cout << "ID Anggota  : ";
         cin >> pengembalian.id_peminjam;
         cout << "ID Buku     : ";
@@ -611,7 +610,7 @@ void pengembalian_buku()
         // 5. apabila sebelumnya dia tidak melakukan peminjaman
         if (!respon_pengembalian)
         {
-            cout << "Tidak ada peminjaman buku tersebut" << endl;
+            cout << "Tidak ada peminjaman buku tersebutn\n\n";
         }
         // 6. Apabila sebelumnya dia melakukan peminjaman
         else
@@ -681,7 +680,7 @@ void pengembalian_buku()
                 temp = temp->next;
             }
 
-            cout << "Data peminjaman berhasil diupdate!" << endl;
+            cout << "Buku berhasil dikembalikan dan\nData peminjaman berhasil diupdate!\n\n";
 
             fclose(fp_data_peminjaman);
         }
