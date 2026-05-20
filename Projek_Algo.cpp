@@ -13,18 +13,15 @@ struct dataBuku
 };
 dataBuku buku[100];
 
-struct data_buku
-{
-    char id_buku[10];
-    char judul_buku[100];
-    int stok_buku;
-    int total_peminjaman;
-    int tersedia;
-    int terpinjam;
-
-    // data_buku *kiri;
-    // data_buku *kanan;
-};
+// struct data_buku
+// {
+//     char id_buku[10];
+//     char judul_buku[100];
+//     int stok_buku;
+//     int total_peminjaman;
+//     int tersedia;
+//     int terpinjam;
+// };
 
 struct peminjamanBuku
 {
@@ -55,8 +52,6 @@ void pengembalian_buku();
 void riwayat_peminjaman();
 void membaca_data_buku_txt();
 
-
-// FILE *fptr = fopen("data_buku.txt", "a");
 dataBuku *ptr = buku;
 int pilihan, jumlahData = 0;
 
@@ -127,7 +122,7 @@ int main()
 ////////simpan data
 void simpan_data(dataBuku *ptr, int &jumlah)
 {
-    FILE *fptr=fopen("data_buku.txt", "a");
+    FILE *fptr = fopen("data_buku.txt", "a");
     if (fptr == NULL)
     {
         cout << "Gagal membuka file!\n";
@@ -147,7 +142,7 @@ void simpan_data(dataBuku *ptr, int &jumlah)
 void menambahkan_data_buku(dataBuku *ptr, int &jumlah)
 {
     cout << "ID Buku            : ";
-    
+
     cin.getline((ptr + jumlah)->id_buku, 10);
 
     cout << "Judul Buku         : ";
@@ -216,8 +211,9 @@ void melihat_daftar_buku(dataBuku *ptr, int &jumlah)
     }
     fclose(fptr);
 
-    if(jumlahData==0){
-        cout<<"Data tidak dapat dibaca atau format file salah\n";
+    if (jumlahData == 0)
+    {
+        cout << "Data tidak dapat dibaca\n";
         system("pause");
         system("cls");
         return;
@@ -431,7 +427,7 @@ void peminjaman_buku()
     FILE *fp_data_peminjaman = fopen("data_peminjaman.txt", "a");
     if (!fp_data_peminjaman)
     {
-        cout << "Belum ada data peminjaman buku";
+        cout << "File gagal dibuka";
         return;
     }
 
@@ -470,7 +466,7 @@ void peminjaman_buku()
         fclose(fp_data_peminjaman);
         return;
     }
-    else if (buku[s].tersedia == 0)
+    else if (buku[s].tersedia <= 0)
     {
         cout << "Maaf, buku yang anda cari sedang dipinjam semua" << endl;
         fclose(fp_data_peminjaman);
@@ -626,6 +622,11 @@ void pengembalian_buku()
                 s2++; // s = index buku[] yg isinya adalah id_buku yg akan dikembalikan
             }
         }
+        if (found_2 == false)
+        {
+            cout << "Data  buku tidak ditemukan!\n";
+            return;
+        }
 
         buku[s2].tersedia++;
         buku[s2].terpinjam--;
@@ -703,7 +704,7 @@ void riwayat_peminjaman()
             cout << "Pilihan tidak ada!\n";
         }
     }
-    else 
+    else
     {
         cout << "Pilihan tidak valid\n";
         system("pause");
