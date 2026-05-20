@@ -146,14 +146,14 @@ void simpan_data(dataBuku *ptr, int &jumlah)
 //////tambah data buku leeeeeeee
 void menambahkan_data_buku(dataBuku *ptr, int &jumlah)
 {
-    cout << "ID Buku            : ";
-    
+    cout << "ID Buku             : ";
+    //id kl ud ad gausa dimasukin
     cin.getline((ptr + jumlah)->id_buku, 10);
 
-    cout << "Judul Buku         : ";
+    cout << "Judul Buku maks(100): ";
     cin.getline((ptr + jumlah)->judul_buku, 100);
 
-    cout << "Stok buku          : ";
+    cout << "Stok buku           : ";
     cin >> ((ptr + jumlah)->stok_buku);
     cin.ignore();
 
@@ -161,14 +161,14 @@ void menambahkan_data_buku(dataBuku *ptr, int &jumlah)
     (ptr + jumlah)->tersedia = (ptr + jumlah)->stok_buku;
     (ptr + jumlah)->terpinjam = 0;
 
-    cout << "Total peminjaman   : ";
-    cin >> ((ptr + jumlah)->total_peminjaman);
+    // // cout << "Total peminjaman    : ";
+    // cin >> ((ptr + jumlah)->total_peminjaman);
 
-    cout << "Total yang tersedia: ";
-    cin >> ((ptr + jumlah)->tersedia);
+    // cout << "Total yang tersedia : ";
+    // cin >> ((ptr + jumlah)->tersedia);
 
-    cout << "Total yang terpinjam: ";
-    cin >> ((ptr + jumlah)->terpinjam);
+    // cout << "Total yang terpinjam : ";
+    // cin >> ((ptr + jumlah)->terpinjam);
 
     // dreeyyyyy maaapp, mau cek bentarrrrr,
     // ini yg bawah punya km gk ak apa apa iiiinnn, cuma komenin doanggggg
@@ -269,21 +269,21 @@ void melihat_daftar_buku(dataBuku *ptr, int &jumlah)
     // DREEEYY MAAAPPPP, CEK BENTARR
     //  cout << left << setw(5) << "No" << setw(15) << "ID Buku " << setw(35) << "Nama Buku" << setw(25) << "Stok Buku\n";
     cout << left << setfill(' ') << setw(3) << "No." << " "
-         << left << setfill(' ') << setw(10) << "ID buku" << " "
-         << left << setfill(' ') << setw(15) << "judul" << " "
+         << left << setfill(' ') << setw(10) << "ID_buku" << " "
+         << left << setfill(' ') << setw(20) << "judul" << " "
          << left << setfill(' ') << setw(6) << "stok" << " "
-         << left << setfill(' ') << setw(17) << "Total Peminjaman" << " "
+         << left << setfill(' ') << setw(17) << "Total_Peminjaman" << " "
          << left << setfill(' ') << setw(8) << "Tersedia" << " "
-         << left << setfill(' ') << setw(3) << "Sedang dipinjam" << " "
+         << left << setfill(' ') << setw(3) << "Sedang_dipinjam" << " "
          << endl;
     for (int i = 0; i < jumlahData; i++)
     {
         cout << left << setfill(' ') << setw(3) << i + 1 << " "
              << left << setfill(' ') << setw(10) << buku[i].id_buku << " "
-             << left << setfill(' ') << setw(15) << buku[i].judul_buku << " "
-             << left << setfill(' ') << setw(6) << buku[i].stok_buku << " "
-             << left << setfill(' ') << setw(17) << buku[i].total_peminjaman << " "
-             << left << setfill(' ') << setw(8) << buku[i].tersedia << " "
+             << left << setfill(' ') << setw(20) << buku[i].judul_buku << " "
+             << left << setfill(' ') << setw(12) << buku[i].stok_buku << " "
+             << left << setfill(' ') << setw(15) << buku[i].total_peminjaman << " "
+             << left << setfill(' ') << setw(10) << buku[i].tersedia << " "
              << left << setfill(' ') << setw(3) << buku[i].terpinjam << " "
              << endl;
 
@@ -338,9 +338,9 @@ void cari_buku()
              << left << setfill(' ') << setw(10) << "ID buku" << " "
              << left << setfill(' ') << setw(15) << "judul" << " "
              << left << setfill(' ') << setw(6) << "stok" << " "
-             << left << setfill(' ') << setw(17) << "Total Peminjaman" << " "
+             << left << setfill(' ') << setw(17) << "Total_Peminjaman" << " "
              << left << setfill(' ') << setw(8) << "Tersedia" << " "
-             << left << setfill(' ') << setw(3) << "Sedang dipinjam" << " "
+             << left << setfill(' ') << setw(3) << "Sedang_dipinjam" << " "
              << endl
              << "----------------------------------------------------------------------------" << endl
 
