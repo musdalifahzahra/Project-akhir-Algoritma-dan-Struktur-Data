@@ -13,16 +13,6 @@ struct dataBuku
 };
 dataBuku buku[100];
 
-// struct data_buku
-// {
-//     char id_buku[10];
-//     char judul_buku[100];
-//     int stok_buku;
-//     int total_peminjaman;
-//     int tersedia;
-//     int terpinjam;
-// };
-
 struct peminjamanBuku
 {
     char id_buku[10];
@@ -53,7 +43,9 @@ void riwayat_peminjaman();
 void membaca_data_buku_txt();
 
 dataBuku *ptr = buku;
-int pilihan, jumlahData = 0;
+int jumlahData = 0;
+char pilihan;
+int n; // n = jumlah data yang tersimpan di buku[]
 
 int main()
 {
@@ -76,47 +68,47 @@ int main()
 
         switch (pilihan)
         {
-        case 1:
+        case '1':
         {
             menambahkan_data_buku(ptr, jumlahData);
             break;
         }
-        case 2:
+        case '2':
         {
             melihat_daftar_buku(ptr, jumlahData);
             break;
         }
-        case 3:
+        case '3':
         {
             cari_buku();
             break;
         }
-        case 4:
+        case '4':
         {
             peminjaman_buku();
             break;
         }
-        case 5:
+        case '5':
         {
             pengembalian_buku();
             break;
         }
-        case 6:
+        case '6':
         {
             riwayat_peminjaman();
             break;
         }
-        case 7:
+        case '7':
         {
             cout << "Terima Kasih Telah menggunakan program ini!:>\n";
             break;
         }
         default:
         {
-            cout << "Pilihan tidak ada!\n";
+            cout << "Pilihan tidak ada!\n\n";
         }
         }
-    } while (pilihan != 7);
+    } while (pilihan != '7');
 }
 
 ////////simpan data
@@ -295,61 +287,67 @@ void melihat_daftar_buku(dataBuku *ptr, int &jumlah)
 //  {
 //  }
 
-int n; // jumlah data yang tersimpan di buku[]
 void cari_buku()
 {
     membaca_data_buku_txt();
-    string cari;
-    cout << "======= CARI DATA BUKU =======" << endl
-         << "Masukkan Judul dengan huruf kapital di awal setiap kata" << endl
-         << "Cari Buku: ";
-    getline(cin, cari);
-
-    // Proses searching (sequential search tanpa sentinel)
-    bool found = false;
-    int s = 0;
-    string temp_benar;
-    while (s < n and found == false)
+    if (n == 0)
     {
-        temp_benar = buku[s].judul_buku;
-        if (temp_benar == cari)
-        {
-            found = true;
-        }
-        else
-        {
-            s++; // s = index yg isinya adalah data Buku yg di cari
-        }
-    }
-
-    if (found == false)
-    {
-        cout << endl
-             << "Judul Buku tidak ditemukan!" << endl;
+        cout << "\nBelum ada data buku yang tersimpan\n\n";
     }
     else
     {
-        cout << endl
-             << "----------------------------------------------------------------------------" << endl
-             << left << setfill(' ') << setw(10) << "ID buku" << " "
-             << left << setfill(' ') << setw(15) << "judul" << " "
-             << left << setfill(' ') << setw(6) << "stok" << " "
-             << left << setfill(' ') << setw(17) << "Total_Peminjaman" << " "
-             << left << setfill(' ') << setw(8) << "Tersedia" << " "
-             << left << setfill(' ') << setw(3) << "Sedang_dipinjam" << " "
-             << endl
-             << "----------------------------------------------------------------------------" << endl
+        string cari;
+        cout << "======= CARI DATA BUKU =======" << endl
+             << "Masukkan Judul dengan huruf kapital di awal setiap kata" << endl
+             << "Cari Buku: ";
+        getline(cin, cari);
 
-             << left << setfill(' ') << setw(10) << buku[s].id_buku << " "
-             << left << setfill(' ') << setw(15) << buku[s].judul_buku << " "
-             << left << setfill(' ') << setw(6) << buku[s].stok_buku << " "
-             << left << setfill(' ') << setw(17) << buku[s].total_peminjaman << " "
-             << left << setfill(' ') << setw(8) << buku[s].tersedia << " "
-             << left << setfill(' ') << setw(3) << buku[s].terpinjam << " "
-             << endl;
+        // Proses searching (sequential search tanpa sentinel)
+        bool found = false;
+        int s = 0;
+        string temp_benar;
+        while (s < n and found == false)
+        {
+            temp_benar = buku[s].judul_buku;
+            if (temp_benar == cari)
+            {
+                found = true;
+            }
+            else
+            {
+                s++; // s = index yg isinya adalah data Buku yg di cari
+            }
+        }
 
-        cout << "============================================================================" << endl
-             << endl;
+        if (found == false)
+        {
+            cout << endl
+                 << "Judul Buku tidak ditemukan!" << endl;
+        }
+        else
+        {
+            cout << endl
+                 << "----------------------------------------------------------------------------" << endl
+                 << left << setfill(' ') << setw(10) << "ID buku" << " "
+                 << left << setfill(' ') << setw(15) << "judul" << " "
+                 << left << setfill(' ') << setw(6) << "stok" << " "
+                 << left << setfill(' ') << setw(17) << "Total_Peminjaman" << " "
+                 << left << setfill(' ') << setw(8) << "Tersedia" << " "
+                 << left << setfill(' ') << setw(3) << "Sedang_dipinjam" << " "
+                 << endl
+                 << "----------------------------------------------------------------------------" << endl
+
+                 << left << setfill(' ') << setw(10) << buku[s].id_buku << " "
+                 << left << setfill(' ') << setw(15) << buku[s].judul_buku << " "
+                 << left << setfill(' ') << setw(6) << buku[s].stok_buku << " "
+                 << left << setfill(' ') << setw(17) << buku[s].total_peminjaman << " "
+                 << left << setfill(' ') << setw(8) << buku[s].tersedia << " "
+                 << left << setfill(' ') << setw(3) << buku[s].terpinjam << " "
+                 << endl;
+
+            cout << "============================================================================" << endl
+                 << endl;
+        }
     }
 }
 
@@ -360,7 +358,7 @@ void membaca_data_buku_txt()
     FILE *fp_data_buku = fopen("data_buku.txt", "r");
     if (!fp_data_buku)
     {
-        cout << "Belum ada data buku";
+        cout << "File data_buku.txt Gagal Dibuka!!!";
         return;
     }
 
@@ -384,7 +382,7 @@ void membaca_data_peminjaman_txt(peminjamanBuku *&head, peminjamanBuku *&tail)
     FILE *fp_data_peminjaman = fopen("data_peminjaman.txt", "r");
     if (!fp_data_peminjaman)
     {
-        cout << "Belum ada data peminjaman";
+        cout << "File data_peminjaman.txt Gagal Dibuka!!!";
         return;
     }
 
@@ -412,7 +410,7 @@ void membaca_data_peminjaman_txt(peminjamanBuku *&head, peminjamanBuku *&tail)
         // node baru u/ list slanjutnya
         new_node = new peminjamanBuku();
     };
-    // hapus node trakir setelah loop selsai
+    // hapus node terakhir setelah loop selsai
     delete new_node;
 
     fclose(fp_data_peminjaman);
@@ -422,106 +420,112 @@ void peminjaman_buku()
 {
     // 1. membaca file data_buku.txt dan simpan data ke buku[]
     membaca_data_buku_txt();
-
-    // 2. input data peminjaman
-    FILE *fp_data_peminjaman = fopen("data_peminjaman.txt", "a");
-    if (!fp_data_peminjaman)
+    if (n == 0)
     {
-        cout << "File gagal dibuka";
-        return;
+        cout << "\nBelum ada data buku yang tersimpan\n\n";
     }
-
-    cout << "===== PEMINJAMAN BUKU =====" << endl;
-    cout << "ID Anggota  : ";
-    cin >> peminjaman[0].id_peminjam;
-    cout << "Nama Anggota: ";
-    cin.ignore();
-    cin.getline(peminjaman[0].nama_peminjam, 20);
-    cout << "ID Buku     : ";
-    cin >> peminjaman[0].id_buku;
-    cout << endl;
-
-    // 3. mencari index buku[] mana yang menyimpan data buku yang ingin dipinjam
-    bool found = false;
-    int s = 0;
-    string temp_id_buku = peminjaman[0].id_buku;
-    string temp_benar;
-    while (s < n && found == false)
-    {
-        temp_benar = buku[s].id_buku;
-        if (temp_benar == temp_id_buku)
-        {
-            found = true;
-        }
-        else
-        {
-            s++; // s = index yg isinya adalah id_buku yg akan dimpinjam
-        }
-    }
-
-    if (!found)
-    {
-        cout << endl
-             << "Buku yang anda cari tidak tersedia" << endl;
-        fclose(fp_data_peminjaman);
-        return;
-    }
-    else if (buku[s].tersedia <= 0)
-    {
-        cout << "Maaf, buku yang anda cari sedang dipinjam semua" << endl;
-        fclose(fp_data_peminjaman);
-    }
-
-    // 4. apabila di buku[] terdapat data yang ingin dipinjam dan stok buku tersedia
-    // 4.1 data peminjaman di tulis ke dalam data_peminjaman.txt
     else
     {
-        fprintf(fp_data_peminjaman,
-                "%s| %s| %s|\n",
-                peminjaman[0].id_peminjam,
-                peminjaman[0].nama_peminjam,
-                peminjaman[0].id_buku);
 
-        cout << "Data peminjaman berhasil disimpan!" << endl;
-        fclose(fp_data_peminjaman);
-
-        // masukkan data peminjaman ke file riwayat_peminjaman.txt
-        FILE *fp_riwayat_peminjaman = fopen("riwayat_peminjaman.txt", "a");
-        if (!fp_riwayat_peminjaman)
+        // 2. input data peminjaman
+        FILE *fp_data_peminjaman = fopen("data_peminjaman.txt", "a");
+        if (!fp_data_peminjaman)
         {
-            cout << "Belum ada data peminjaman buku";
-            return;
-        }
-        fprintf(fp_riwayat_peminjaman,
-                "%s| %s| %s|\n",
-                peminjaman[0].id_peminjam,
-                peminjaman[0].nama_peminjam,
-                peminjaman[0].id_buku);
-
-        cout << "Data peminjaman berhasil disimpan!" << endl;
-        fclose(fp_riwayat_peminjaman);
-
-        // 4.2 melakukan update mengenai informasi stok buku di data_buku.txt
-        buku[s].tersedia--;
-        buku[s].terpinjam++;
-        buku[s].total_peminjaman++;
-
-        FILE *fp_data_buku = fopen("data_buku.txt", "w");
-        if (!fp_data_buku)
-        {
-            cout << "Belum ada data buku yang tersimpan";
+            cout << "File data_peminjaman.txt Gagal Dibuka!!!";
             return;
         }
 
-        for (int i = 0; i < n; i++)
+        cout << "===== PEMINJAMAN BUKU =====" << endl;
+        cout << "ID Anggota  : ";
+        cin >> peminjaman[0].id_peminjam;
+        cout << "Nama Anggota: ";
+        cin.ignore();
+        cin.getline(peminjaman[0].nama_peminjam, 20);
+        cout << "ID Buku     : ";
+        cin >> peminjaman[0].id_buku;
+        cout << endl;
+
+        // 3. mencari index buku[] mana yang menyimpan data buku yang ingin dipinjam
+        bool found = false;
+        int s = 0;
+        string temp_id_buku = peminjaman[0].id_buku;
+        string temp_benar;
+        while (s < n && found == false)
         {
-            fprintf(fp_data_buku,
-                    "%s| %s| %d| %d| %d| %d\n",
-                    buku[i].id_buku, buku[i].judul_buku,
-                    buku[i].stok_buku, buku[i].total_peminjaman,
-                    buku[i].tersedia, buku[i].terpinjam);
+            temp_benar = buku[s].id_buku;
+            if (temp_benar == temp_id_buku)
+            {
+                found = true;
+            }
+            else
+            {
+                s++; // s = index yg isinya adalah id_buku yg akan dimpinjam
+            }
         }
-        fclose(fp_data_buku);
+
+        if (!found)
+        {
+            cout << endl
+                 << "Buku yang anda cari tidak tersedia" << endl;
+            fclose(fp_data_peminjaman);
+            return;
+        }
+        else if (buku[s].tersedia <= 0)
+        {
+            cout << "Maaf, buku yang anda cari sedang dipinjam semua" << endl;
+            fclose(fp_data_peminjaman);
+        }
+
+        // 4. apabila di buku[] terdapat data yang ingin dipinjam dan stok buku tersedia
+        // 4.1 data peminjaman di tulis ke dalam data_peminjaman.txt
+        else
+        {
+            fprintf(fp_data_peminjaman,
+                    "%s| %s| %s|\n",
+                    peminjaman[0].id_peminjam,
+                    peminjaman[0].nama_peminjam,
+                    peminjaman[0].id_buku);
+
+            cout << "Data peminjaman berhasil disimpan!" << endl;
+            fclose(fp_data_peminjaman);
+
+            // masukkan data peminjaman ke file riwayat_peminjaman.txt
+            FILE *fp_riwayat_peminjaman = fopen("riwayat_peminjaman.txt", "a");
+            if (!fp_riwayat_peminjaman)
+            {
+                cout << "File Riwayat_peminjaman.txt Gagal Dibuka!!!";
+                return;
+            }
+            fprintf(fp_riwayat_peminjaman,
+                    "%s| %s| %s|\n",
+                    peminjaman[0].id_peminjam,
+                    peminjaman[0].nama_peminjam,
+                    peminjaman[0].id_buku);
+
+            fclose(fp_riwayat_peminjaman);
+
+            // 4.2 melakukan update mengenai informasi stok buku di data_buku.txt
+            buku[s].tersedia--;
+            buku[s].terpinjam++;
+            buku[s].total_peminjaman++;
+
+            FILE *fp_data_buku = fopen("data_buku.txt", "w");
+            if (!fp_data_buku)
+            {
+                cout << "Belum ada data buku yang tersimpan";
+                return;
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                fprintf(fp_data_buku,
+                        "%s| %s| %d| %d| %d| %d\n",
+                        buku[i].id_buku, buku[i].judul_buku,
+                        buku[i].stok_buku, buku[i].total_peminjaman,
+                        buku[i].tersedia, buku[i].terpinjam);
+            }
+            fclose(fp_data_buku);
+        }
     }
 }
 
@@ -562,6 +566,7 @@ void hapus_data_peminjaman(peminjamanBuku *&head, char *id_peminjam, char *id_bu
         }
         temp = temp->next;
     }
+
     // c. data yg di cari tidak ada
     if (temp->next == NULL)
     {
@@ -586,87 +591,100 @@ void pengembalian_buku()
 
     // 2. membaca file data_peminjaman.txt dan simpan data di linked list peminjamanBuku
     membaca_data_peminjaman_txt(head, tail);
-
-    // 3. input data pengembalian buku
-    cout << "===== PENGEMBALIAN BUKU =====" << endl;
-    cout << "ID Anggota  : ";
-    cin >> pengembalian.id_peminjam;
-    cout << "ID Buku     : ";
-    cin >> pengembalian.id_buku;
-    cout << endl;
-
-    // 4. Hapus node yg berisi data pengembalian pada linked list peminjamanBuku
-    hapus_data_peminjaman(head, pengembalian.id_peminjam, pengembalian.id_buku, respon_pengembalian);
-    // 5. apabila sebelumnya dia tidak melakukan peminjaman
-    if (!respon_pengembalian)
+    if (head == NULL)
     {
-        cout << "Tidak ada peminjaman buku tersebut" << endl;
+        cout << "\nBelum ada peminjaman yang dilakukan\n\n";
     }
-    // 6. Apabila sebelumnya dia melakukan peminjaman
     else
     {
-        // 6.1 Memperbarui informasi stok buku di data_buku.txt
-        bool found_2 = false;
-        int s2 = 0;
-        string temp_benar_id_buku_2;
-        while (s2 < n && found_2 == false)
-        {
-            temp_benar_id_buku_2 = buku[s2].id_buku;
+        // 3. input data pengembalian buku
+        cout << "===== PENGEMBALIAN BUKU =====" << endl;
+        cout << "ID Anggota  : ";
+        cin >> pengembalian.id_peminjam;
+        cout << "ID Buku     : ";
+        cin >> pengembalian.id_buku;
+        cout << endl;
 
-            if (temp_benar_id_buku_2 == pengembalian.id_buku)
+        // 4. Hapus node yg berisi data pengembalian pada linked list peminjamanBuku
+        hapus_data_peminjaman(head, pengembalian.id_peminjam, pengembalian.id_buku, respon_pengembalian);
+
+        // 5. apabila sebelumnya dia tidak melakukan peminjaman
+        if (!respon_pengembalian)
+        {
+            cout << "Tidak ada peminjaman buku tersebut" << endl;
+        }
+        // 6. Apabila sebelumnya dia melakukan peminjaman
+        else
+        {
+            // 6.1 Memperbarui informasi stok buku di data_buku.txt
+            bool found_2 = false;
+            int s2 = 0;
+            string temp_benar_id_buku_2;
+            while (s2 < n && found_2 == false)
             {
-                found_2 = true;
+                temp_benar_id_buku_2 = buku[s2].id_buku;
+
+                if (temp_benar_id_buku_2 == pengembalian.id_buku)
+                {
+                    found_2 = true;
+                }
+                else
+                {
+                    s2++; // s = index buku[] yg isinya adalah id_buku yg akan dikembalikan
+                }
             }
-            else
+            if (found_2 == false)
             {
-                s2++; // s = index buku[] yg isinya adalah id_buku yg akan dikembalikan
+                cout << "Data  buku tidak ditemukan!\n";
+                return;
             }
+
+            buku[s2].tersedia++;
+            buku[s2].terpinjam--;
+
+            FILE *fp_data_buku = fopen("data_buku.txt", "w");
+
+            if (!fp_data_buku)
+            {
+                cout << "File data_buku.txt Gagal Dibuka!!!";
+                return;
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                fprintf(fp_data_buku,
+                        "%s| %s| %d| %d| %d| %d\n",
+                        buku[i].id_buku, buku[i].judul_buku,
+                        buku[i].stok_buku, buku[i].total_peminjaman,
+                        buku[i].tersedia, buku[i].terpinjam);
+            }
+
+            fclose(fp_data_buku);
+
+            // 6.2 Memperbarui data peminjaman di data_peminjaman.txt
+            FILE *fp_data_peminjaman = fopen("data_peminjaman.txt", "w");
+            if (!fp_data_peminjaman)
+            {
+                cout << "File data_peminjaman.txt Gagal Dibuka!!!";
+                return;
+            }
+
+            peminjamanBuku *temp = head;
+
+            while (temp != NULL)
+            {
+                fprintf(fp_data_peminjaman,
+                        "%s| %s| %s|\n",
+                        temp->id_peminjam,
+                        temp->nama_peminjam,
+                        temp->id_buku);
+                temp = temp->next;
+            }
+
+            cout << "Data peminjaman berhasil diupdate!" << endl;
+
+            fclose(fp_data_peminjaman);
         }
-        if (found_2 == false)
-        {
-            cout << "Data  buku tidak ditemukan!\n";
-            return;
-        }
-
-        buku[s2].tersedia++;
-        buku[s2].terpinjam--;
-
-        FILE *fp_data_buku = fopen("data_buku.txt", "w");
-
-        for (int i = 0; i < n; i++)
-        {
-            fprintf(fp_data_buku,
-                    "%s| %s| %d| %d| %d| %d\n",
-                    buku[i].id_buku, buku[i].judul_buku,
-                    buku[i].stok_buku, buku[i].total_peminjaman,
-                    buku[i].tersedia, buku[i].terpinjam);
-        }
-
-        fclose(fp_data_buku);
-
-        // 6.2 Memperbarui data peminjaman di data_peminjaman.txt
-        FILE *fp_data_peminjaman = fopen("data_peminjaman.txt", "w");
-        if (!fp_data_peminjaman)
-        {
-            cout << "Belum ada data peminjaman yang tersimpan";
-            return;
-        }
-
-        peminjamanBuku *temp = head;
-
-        while (temp != NULL)
-        {
-            fprintf(fp_data_peminjaman,
-                    "%s| %s| %s|\n",
-                    temp->id_peminjam,
-                    temp->nama_peminjam,
-                    temp->id_buku);
-            temp = temp->next;
-        }
-
-        cout << "Data peminjaman berhasil diupdate!" << endl;
-
-        fclose(fp_data_peminjaman);
     }
 }
 
@@ -677,51 +695,62 @@ peminjamanBuku *tail = NULL;
 void baca_file_ke_linkedlist();
 void tampil_awal_akhir();
 void tampil_akhir_awal();
+int cek_riwayat_kosong();
 
 void riwayat_peminjaman()
 {
-    int pilihan;
-
-    cout << "1. peminjaman terlama -> terbaru\n";
-    cout << "2. peminjaman terbaru -> terlama\n";
-    cout << "Pilih: ";
-    cin >> pilihan;
-    cin.ignore();
-
-    if (pilihan == 1 || pilihan == 2)
+    baca_file_ke_linkedlist();
+    if (cek_riwayat_kosong() != 0)
     {
-        switch (pilihan)
+        int pilihan;
+        cout << "\n1. peminjaman terlama -> terbaru\n";
+        cout << "2. peminjaman terbaru -> terlama\n";
+        cout << "Pilih: ";
+        cin >> pilihan;
+        cin.ignore();
+
+        if (pilihan == 1 || pilihan == 2)
         {
-        case 1:
-            baca_file_ke_linkedlist();
-            tampil_awal_akhir();
-            break;
-        case 2:
-            baca_file_ke_linkedlist();
-            tampil_akhir_awal();
-            break;
-        default:
-            cout << "Pilihan tidak ada!\n";
+            cout << endl
+                 << "==========================================" << endl
+                 << "             RIWAYAT TERBARU " << endl
+                 << "------------------------------------------" << endl
+                 << left << setfill(' ') << setw(15) << "ID_Peminjam" << " "
+                 << left << setfill(' ') << setw(15) << "Nama_Peminjam" << " "
+                 << left << setfill(' ') << setw(6) << "ID_Buku" << " "
+                 << endl
+                 << "------------------------------------------" << endl;
+
+            switch (pilihan)
+            {
+            case 1:
+                tampil_awal_akhir();
+                break;
+            case 2:
+                tampil_akhir_awal();
+                break;
+            }
+
+            cout << "==========================================" << endl
+                 << endl;
         }
-    }
-    else
-    {
-        cout << "Pilihan tidak valid\n";
-        system("pause");
-        system("cls");
+        else
+        {
+            cout << "Pilihan tidak valid\n";
+            system("pause");
+            system("cls");
+        }
     }
 }
 
 void baca_file_ke_linkedlist()
 {
     FILE *fp = fopen("riwayat_peminjaman.txt", "r");
-
     if (!fp)
     {
-        cout << "File tidak ada!\n";
+        cout << "File riwayat_peminjaman.txt Gagal Dibuka!!!\n";
         return;
     }
-
     // RESET LINKED LIST
     head = NULL;
     tail = NULL;
@@ -729,13 +758,11 @@ void baca_file_ke_linkedlist()
     while (true)
     {
         peminjamanBuku *NB = new peminjamanBuku;
-
         int hasil = fscanf(fp,
                            "%[^|]| %[^|]| %[^|]|\n",
                            NB->id_peminjam,
                            NB->nama_peminjam,
                            NB->id_buku);
-
         if (hasil != 3)
         {
             delete NB;
@@ -758,76 +785,40 @@ void baca_file_ke_linkedlist()
             tail = NB;
         }
     }
-
     fclose(fp);
 }
-void tampil_awal_akhir()
+
+int cek_riwayat_kosong()
 {
     if (head == NULL)
     {
-        cout << "Data kosong!\n";
-        return;
+        cout << "\nData kosong! \nBelum ada peminjaman yang dilakukan\n\n";
+        return 0;
     }
+}
 
+void tampil_awal_akhir()
+{
     peminjamanBuku *bantu = head;
-
-    cout << "\n=========== RIWAYAT ===========" << endl;
-
-    cout << left
-         << setw(10) << "ID Peminjam"
-         << setw(20) << "Nama Peminjam"
-         << setw(10) << "ID Buku"
-         << endl;
-
-    cout << setfill('=')
-         << setw(80) << ""
-         << endl;
-
-    cout << setfill(' ');
-
     while (bantu != NULL)
     {
-        cout << left
-             << setw(15) << bantu->id_peminjam
-             << setw(20) << bantu->nama_peminjam
-             << setw(10) << bantu->id_buku
+        cout << left << setfill(' ') << setw(15) << bantu->id_peminjam << " "
+             << left << setfill(' ') << setw(15) << bantu->nama_peminjam << " "
+             << left << setfill(' ') << setw(6) << bantu->id_buku << " "
              << endl;
-
         bantu = bantu->next;
     }
 }
+
 void tampil_akhir_awal()
 {
-    if (tail == NULL)
-    {
-        cout << "Data kosong!\n";
-        return;
-    }
-
     peminjamanBuku *bantu = tail;
-
-    cout << "\n======= RIWAYAT TERBARU =======" << endl;
-
-    cout << left
-         << setw(10) << "ID Peminjam"
-         << setw(20) << "Nama Peminjam"
-         << setw(10) << "ID Buku"
-         << endl;
-
-    cout << setfill('=')
-         << setw(80) << ""
-         << endl;
-
-    cout << setfill(' ');
-
     while (bantu != NULL)
     {
-        cout << left
-             << setw(15) << bantu->id_peminjam
-             << setw(20) << bantu->nama_peminjam
-             << setw(10) << bantu->id_buku
+        cout << left << setfill(' ') << setw(15) << bantu->id_peminjam << " "
+             << left << setfill(' ') << setw(15) << bantu->nama_peminjam << " "
+             << left << setfill(' ') << setw(6) << bantu->id_buku << " "
              << endl;
-
         bantu = bantu->prev;
     }
 }
