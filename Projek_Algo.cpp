@@ -228,7 +228,7 @@ void melihat_daftar_buku(dataBuku *ptr, int &jumlah)
         system("pause");
         system("cls");
     }
-    cout << "========= DATA BUKU ========\n";
+    cout << "========= DATA BUKU ========\n"; 
     cout << left << setfill(' ') << setw(3) << "No." << " "
          << left << setfill(' ') << setw(10) << "ID_buku" << " "
          << left << setfill(' ') << setw(20) << "judul" << " "
@@ -247,6 +247,8 @@ void melihat_daftar_buku(dataBuku *ptr, int &jumlah)
              << left << setfill(' ') << setw(10) << buku[i].tersedia << " "
              << left << setfill(' ') << setw(3) << buku[i].terpinjam << " "
              << endl;
+
+       
     }
     system("pause");
     system("cls");
