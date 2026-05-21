@@ -148,31 +148,6 @@ void menambahkan_data_buku(dataBuku *ptr, int &jumlah)
     (ptr + jumlah)->tersedia = (ptr + jumlah)->stok_buku;
     (ptr + jumlah)->terpinjam = 0;
 
-    // // cout << "Total peminjaman    : ";
-    // cin >> ((ptr + jumlah)->total_peminjaman);
-
-    // cout << "Total yang tersedia : ";
-    // cin >> ((ptr + jumlah)->tersedia);
-
-    // cout << "Total yang terpinjam : ";
-    // cin >> ((ptr + jumlah)->terpinjam);
-
-    // dreeyyyyy maaapp, mau cek bentarrrrr,
-    // ini yg bawah punya km gk ak apa apa iiiinnn, cuma komenin doanggggg
-
-    // cout << setfill(' ');
-    // cout << "=== TAMBAH DATA LUKISAN ===\n";
-    // cout << left << setw(15) << "ID Buku " << ": "; cin.ignore();
-    // cin.getline((ptr + jumlah)->id_buku, 10);
-    // cout << left << setw(15) << "Judul Buku" << ": ";
-    // cin.getline((ptr + jumlah)->judul_buku, 100);
-    // cout << left << setw(15) << "Stok Buku" << ": ";
-    // cin >> ((ptr + jumlah)->stok_buku);
-    // cout << left << setw(15) << "Total yang tersedia" << ": ";
-    // cin >> ((ptr + jumlah)->tersedia);
-    // cout << left << setw(15) << "Total yang terpinjam" << ": ";
-    // cin >> ((ptr + jumlah)->terpinjam);
-    // cout << endl;
     jumlah++;
     simpan_data(ptr, jumlah);
     cout << "Data berhasil ditambahkan!\n";
@@ -253,9 +228,7 @@ void melihat_daftar_buku(dataBuku *ptr, int &jumlah)
         system("pause");
         system("cls");
     }
-    cout << "========= DATA BUKU ========\n"; // 30
-    // DREEEYY MAAAPPPP, CEK BENTARR
-    //  cout << left << setw(5) << "No" << setw(15) << "ID Buku " << setw(35) << "Nama Buku" << setw(25) << "Stok Buku\n";
+    cout << "========= DATA BUKU ========\n";
     cout << left << setfill(' ') << setw(3) << "No." << " "
          << left << setfill(' ') << setw(10) << "ID_buku" << " "
          << left << setfill(' ') << setw(20) << "judul" << " "
@@ -274,18 +247,10 @@ void melihat_daftar_buku(dataBuku *ptr, int &jumlah)
              << left << setfill(' ') << setw(10) << buku[i].tersedia << " "
              << left << setfill(' ') << setw(3) << buku[i].terpinjam << " "
              << endl;
-
-        // DREEEYY MAAAPPPP, CEK BENTARR
-        //  cout << left << setw(5) << i + 1 << setw(15) << buku[i].id_buku << setw(35) << buku[i].judul_buku << setw(25) << buku[i].stok_buku << endl;
     }
     system("pause");
     system("cls");
 }
-
-// DREEEY AK G NGERTI POINTER KMU, JADI AK G PAKE POOINTER DULU YY, NTR AKHIR AK UBAH
-//  void cari_buku(dataBuku *ptr, int &jumlah)
-//  {
-//  }
 
 void cari_buku()
 {
@@ -351,7 +316,6 @@ void cari_buku()
     }
 }
 
-// musdal
 // membaca file data_buku.txt
 void membaca_data_buku_txt()
 {
