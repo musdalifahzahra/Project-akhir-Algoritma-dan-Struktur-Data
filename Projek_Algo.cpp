@@ -111,7 +111,6 @@ int main()
     } while (pilihan != '7');
 }
 
-////////simpan data
 void simpan_data(dataBuku *ptr, int &jumlah)
 {
     FILE *fptr = fopen("data_buku.txt", "a");
@@ -130,11 +129,9 @@ void simpan_data(dataBuku *ptr, int &jumlah)
     }
 }
 
-//////tambah data buku leeeeeeee
 void menambahkan_data_buku(dataBuku *ptr, int &jumlah)
 {
     cout << "ID Buku             : ";
-    // id kl ud ad gausa dimasukin
     cin.getline((ptr + jumlah)->id_buku, 10);
 
     cout << "Judul Buku maks(100): ";
@@ -155,7 +152,6 @@ void menambahkan_data_buku(dataBuku *ptr, int &jumlah)
     system("cls");
 }
 
-/// melihat daftar buku
 void melihat_daftar_buku(dataBuku *ptr, int &jumlah)
 {
     cout << setfill(' ');
