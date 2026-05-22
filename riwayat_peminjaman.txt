@@ -1,9 +1,0 @@
-1| audrey| 1|
-1| Audrey| 1|
-KKKK| Mus dol| 1|
-LLLL| wo w| 444|
-qqqq| as d| 555|
-tttt| wp w| 555|
-kueh| audrey| 10|
-kueh| mus dol| 10|
-1| Dds| 1|
